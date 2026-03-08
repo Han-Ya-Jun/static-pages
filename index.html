@@ -221,13 +221,26 @@
         });
     </script>
     <style>
-        /* 调大播放器歌词字体 */
+        /* 播放器歌词样式 */
         .aplayer-lrc-current {
             font-size: 18px !important;
             font-weight: bold !important;
+            color: #ffd700 !important; /* 金色高亮当前播放行 */
         }
         .aplayer-lrc p {
             font-size: 16px !important;
+            color: rgba(255,255,255,0.8) !important;
+        }
+        /* 让静态歌词区域支持平滑滚动 */
+        .lyrics {
+            scroll-behavior: smooth;
+        }
+        /* 静态歌词高亮当前播放行（动态更新） */
+        .lyrics .active-line {
+            color: #ffd700;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            transform: scale(1.05);
         }
     </style>
             }]
