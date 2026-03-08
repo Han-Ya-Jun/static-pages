@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深圳追梦 - 汪峰式摇滚</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        .aplayer {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .lyrics {
+            margin-top: 30px;
+            color: white;
+            line-height: 1.8;
+            text-align: center;
+            font-size: 1rem;
+            background: rgba(0,0,0,0.2);
+            padding: 25px;
+            border-radius: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .lyrics h3 {
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        .verse {
+            margin-bottom: 20px;
+        }
+        .chorus {
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        /* 滚动条样式 */
+        .lyrics::-webkit-scrollbar {
+            width: 6px;
+        }
+        .lyrics::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+        }
+        .lyrics::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+        /* 响应式 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 25px;
+            }
+            .lyrics {
+                font-size: 0.95rem;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 深圳追梦</h1>
+        <p class="subtitle">汪峰式摇滚 · 致所有在深圳打拼的人</p>
+        
+        <div id="aplayer"></div>
+        
+        <div class="lyrics">
+            <h3>🎼 完整歌词</h3>
+            <div class="verse">
+                <strong>[Verse 1]</strong><br>
+                九四年的风 吹过少年梦<br>
+                一列绿皮车 载着我向南冲<br>
+                行李箱很沉 前路很朦胧<br>
+                深圳的霓虹 照不进城中村<br>
+                <br>
+                出租屋很小 灯光也很暗<br>
+                代码敲到深夜 没人说晚安<br>
+                周末的公司 是我的港湾<br>
+                把迷茫 都写成 未来的答案
+            </div>
+            
+            <div class="chorus">
+                <strong>[Chorus]</strong><br>
+                还记得那年 春天里<br>
+                我一无所有 奔向这里<br>
+                从泥泞小巷 到高楼林立<br>
+                把汗水 活成 勋章的意义<br>
+                <br>
+                如今我站在 春风里<br>
+                肩上有责任 心中有勇气<br>
+                两个小天使 是最好的礼物<br>
+                这一路辛苦 都值得 被记住
+            </div>
+            
+            <div class="verse">
+                <strong>[Verse 2]</strong><br>
+                你辞掉安稳 跨越山海来相伴<br>
+                把孤单 变成了 两个人的温暖<br>
+                日子再难 也没回头看<br>
+                一路跌撞 一路勇敢<br>
+                <br>
+                代码写过几行 青春熬几场<br>
+                压力像浪潮 拍打着肩膀<br>
+                家是我的光 也是我的方向<br>
+                再苦再累 也敢往前闯
+            </div>
+            
+            <div class="verse">
+                <strong>[Outro]</strong><br>
+                那些艰难的时光 都已成过往<br>
+                春天还在 我还在 路上
+            </div>
+        </div>
+        
+        <div class="footer">
+            🎛️ BPM: 120 | 风格：流行摇滚 | 制作：hanclaw
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <script>
+        const ap = new APlayer({
+            container: document.getElementById('aplayer'),
+            theme: '#764ba2',
+            loop: 'all',
+            lrcType: 0,
+            audio: [{
+                name: '深圳追梦',
+                artist: 'AI生成 · 汪峰式摇滚',
+                url: 'https://openclaw-1251316464.cos.ap-nanjing.myqcloud.com/shenzhen-dream.mp3',
+                cover: 'https://picsum.photos/id/1019/400/400'
+            }]
+        });
+    </script>
+</body>
+</html>
