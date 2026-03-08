@@ -219,6 +219,16 @@
             width: 80%;
         }
 
+        /* ---- footer ---- */
+        .footer-credit {
+            text-align: center;
+            padding: 8px 0 4px;
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
         /* ---- mobile ---- */
         @media (max-height: 700px) {
             .cover-wrap { width: 180px; height: 180px; }
@@ -281,44 +291,37 @@
             </div>
         </div>
     </div>
+    <div class="footer-credit">Created by hanclaw</div>
 </div>
 
 <script>
 const LRC = [
-    [0,    ""],
     [2,    "九四年的我 怀揣一个梦"],
     [6,    "绿皮车摇晃 奔向南方的风"],
     [10,   "行李箱压着 年少的沉重"],
     [14,   "霓虹再璀璨 照不进城中村"],
-    [19,   ""],
     [20,   "出租屋很小 灯光也很暗"],
     [24,   "代码敲到深夜 无人道晚安"],
     [28,   "周末的公司 是我的港湾"],
     [32,   "把孤独和迷茫 写成未来答案"],
-    [37,   ""],
     [38,   "你放下安稳 跨越千里来相伴"],
     [42,   "把颠沛流离 换成两个人的暖"],
     [46,   "日子再艰难 我们不曾回头看"],
     [50,   "一路跌跌撞撞 一路咬牙撑完"],
-    [55,   ""],
     [56,   "还记得那年 春天里"],
     [60,   "我一无所有 闯在这里"],
     [64,   "从泥泞小巷 到高楼林立"],
     [68,   "把汗水 活成勋章的意义"],
-    [73,   ""],
     [74,   "如今我站在 春风里"],
     [78,   "肩上有责任 心中有勇气"],
     [82,   "两个小天使 是最好的期许"],
     [86,   "这一路辛苦 都值得 被铭记"],
-    [91,   ""],
     [92,   "代码写过几行 青春熬几场"],
     [95,   "压力像浪潮 拍打我肩膀"],
     [98,   "家是我的光 也是我的方向"],
     [101,  "再苦再累 也敢继续往前闯"],
-    [104,  ""],
     [105,  "那些艰难的时光 都已成过往"],
-    [109,  "春天还在 我还在 路上"],
-    [113,  ""]
+    [109,  "春天还在 我还在 路上"]
 ];
 
 const audio = new Audio('./shenzhen-dream.mp3');
@@ -341,7 +344,7 @@ let currentIdx = -1;
 
 function buildLyrics() {
     lyricsEl.innerHTML = LRC.map((l, i) =>
-        `<div class="lyric-line" data-i="${i}">${l[1] || '♪'}</div>`
+        `<div class="lyric-line" data-i="${i}">${l[1]}</div>`
     ).join('');
     lyricsEl.querySelectorAll('.lyric-line').forEach(el => {
         el.addEventListener('click', () => {
