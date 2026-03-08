@@ -3,211 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深圳追梦 - 汪峰式摇滚</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <title>深圳追梦 - Music Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary: #ff4757;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.04);
+            --text: #e8e8f0;
+            --text-dim: rgba(255,255,255,0.35);
+            --text-mid: rgba(255,255,255,0.6);
+            --accent-glow: rgba(255, 71, 87, 0.25);
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            max-width: 600px;
-            width: 100%;
-        }
-        h1 {
-            color: white;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .subtitle {
-            color: rgba(255,255,255,0.8);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-        .aplayer {
-            border-radius: 12px;
+            font-family: 'Noto Sans SC', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
-        .lyrics {
-            margin-top: 30px;
-            color: white;
-            line-height: 1.8;
+
+        /* ---- animated bg ---- */
+        .bg-gradient {
+            position: fixed; inset: 0; z-index: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 30%, rgba(255,71,87,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 80% 70%, rgba(108,92,231,0.06) 0%, transparent 70%);
+            animation: bgShift 20s ease-in-out infinite alternate;
+        }
+        @keyframes bgShift {
+            0%   { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(30deg); }
+        }
+
+        .app {
+            position: relative; z-index: 1;
+            height: 100%; display: flex; flex-direction: column;
+            max-width: 480px; margin: 0 auto;
+        }
+
+        /* ---- top bar ---- */
+        .top-bar {
+            padding: 16px 20px 8px;
             text-align: center;
-            font-size: 1rem;
-            background: rgba(0,0,0,0.2);
-            padding: 25px;
-            border-radius: 12px;
-            max-height: 400px;
+            font-size: 13px; font-weight: 500;
+            color: var(--text-mid);
+            letter-spacing: 0.5px;
+        }
+
+        /* ---- cover art ---- */
+        .cover-section {
+            flex-shrink: 0;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 12px 20px 0;
+        }
+        .cover-wrap {
+            position: relative;
+            width: 240px; height: 240px;
+        }
+        .cover-disc {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #1a1a2e, #2a2a3e, #1a1a2e);
+            display: flex; align-items: center; justify-content: center;
+            animation: spin 12s linear infinite;
+            animation-play-state: paused;
+            box-shadow: 0 0 0 6px rgba(255,255,255,0.04), 0 0 60px rgba(255,71,87,0.1);
+        }
+        .cover-disc.playing { animation-play-state: running; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .cover-img {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.08);
+        }
+        .cover-hole {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px solid rgba(255,255,255,0.06);
+            z-index: 2;
+        }
+
+        .song-info {
+            text-align: center; margin-top: 20px;
+        }
+        .song-title {
+            font-size: 22px; font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .song-artist {
+            font-size: 13px; color: var(--text-mid);
+            margin-top: 4px;
+        }
+
+        /* ---- lyrics ---- */
+        .lyrics-section {
+            flex: 1; overflow: hidden;
+            position: relative;
+            margin: 16px 0 0;
+        }
+        .lyrics-scroll {
+            height: 100%;
             overflow-y: auto;
+            padding: 20px 24px 80px;
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 75%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 75%, transparent 100%);
+            scroll-behavior: smooth;
         }
-        .lyrics h3 {
-            margin-bottom: 20px;
-            color: #ffd700;
-        }
-        .verse {
-            margin-bottom: 20px;
-        }
-        .chorus {
-            margin-bottom: 20px;
-            font-weight: bold;
-            color: #ffd700;
-        }
-        .footer {
-            margin-top: 30px;
+        .lyrics-scroll::-webkit-scrollbar { display: none; }
+        .lyric-line {
             text-align: center;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
+            padding: 8px 0;
+            font-size: 15px;
+            color: var(--text-dim);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            line-height: 1.6;
         }
-        /* 滚动条样式 */
-        .lyrics::-webkit-scrollbar {
-            width: 6px;
+        .lyric-line:hover { color: var(--text-mid); }
+        .lyric-line.active {
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            text-shadow: 0 0 20px var(--accent-glow);
         }
-        .lyrics::-webkit-scrollbar-track {
+        .lyric-line.near {
+            color: var(--text-mid);
+        }
+
+        /* ---- controls ---- */
+        .controls {
+            flex-shrink: 0;
+            padding: 0 24px 28px;
+            background: linear-gradient(to top, rgba(10,10,15,0.95) 60%, transparent);
+        }
+
+        .progress-wrap {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 20px;
+        }
+        .time-label {
+            font-size: 11px; color: var(--text-dim);
+            width: 36px; text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+        .progress-bar {
+            flex: 1; height: 3px;
             background: rgba(255,255,255,0.1);
-            border-radius: 3px;
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
         }
-        .lyrics::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.3);
-            border-radius: 3px;
+        .progress-bar:hover { height: 5px; }
+        .progress-fill {
+            height: 100%; border-radius: 2px;
+            background: var(--primary);
+            width: 0%;
+            position: relative;
+            transition: width 0.1s linear;
         }
-        /* 响应式 */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .container {
-                padding: 25px;
-            }
-            .lyrics {
-                font-size: 0.95rem;
-                padding: 20px;
-            }
+        .progress-fill::after {
+            content: '';
+            position: absolute; right: -5px; top: 50%;
+            transform: translateY(-50%);
+            width: 10px; height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .progress-bar:hover .progress-fill::after { opacity: 1; }
+
+        .btn-row {
+            display: flex; align-items: center; justify-content: center;
+            gap: 32px;
+        }
+        .btn {
+            background: none; border: none; color: var(--text);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: transform 0.15s, color 0.2s;
+        }
+        .btn:active { transform: scale(0.9); }
+        .btn-small { width: 36px; height: 36px; }
+        .btn-small svg { width: 20px; height: 20px; }
+        .btn-play {
+            width: 56px; height: 56px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 4px 24px var(--accent-glow);
+        }
+        .btn-play:hover { box-shadow: 0 4px 32px rgba(255,71,87,0.4); }
+        .btn-play svg { width: 24px; height: 24px; fill: #fff; }
+
+        .volume-row {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; margin-top: 16px;
+        }
+        .volume-row svg { width: 16px; height: 16px; color: var(--text-dim); }
+        .volume-bar {
+            width: 100px; height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px; cursor: pointer;
+            position: relative;
+        }
+        .volume-fill {
+            height: 100%; border-radius: 2px;
+            background: var(--text-mid);
+            width: 80%;
+        }
+
+        /* ---- mobile ---- */
+        @media (max-height: 700px) {
+            .cover-wrap { width: 180px; height: 180px; }
+            .cover-img { width: 110px; height: 110px; }
+            .song-title { font-size: 18px; }
+            .lyrics-section { margin-top: 8px; }
+        }
+        @media (max-height: 580px) {
+            .cover-section { display: none; }
+            .lyrics-section { margin-top: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎵 深圳追梦</h1>
-        <p class="subtitle">汪峰式摇滚 · 致所有在深圳打拼的人</p>
-        
-        <div id="aplayer"></div>
-        
-        <div class="lyrics">
-            <h3>🎼 完整歌词</h3>
-            <div class="verse">
-                <strong>[Verse 1]</strong><br>
-                九四年的我 怀揣一个梦<br>
-                绿皮车摇晃 奔向南方的风<br>
-                行李箱压着 年少的沉重<br>
-                霓虹再璀璨 照不进城中村<br>
-                <br>
-                出租屋很小 灯光也很暗<br>
-                代码敲到深夜 无人道晚安<br>
-                周末的公司 是我的港湾<br>
-                把孤独和迷茫 写成未来答案
+<div class="bg-gradient"></div>
+<div class="app">
+    <div class="top-bar">NOW PLAYING</div>
+
+    <div class="cover-section">
+        <div class="cover-wrap">
+            <div class="cover-disc" id="disc">
+                <img class="cover-img" src="https://picsum.photos/seed/shenzhen/400/400" alt="cover">
             </div>
-            
-            <div class="verse">
-                <strong>[Verse 2]</strong><br>
-                你放下安稳 跨越千里来相伴<br>
-                把颠沛流离 换成两个人的暖<br>
-                日子再艰难 我们不曾回头看<br>
-                一路跌跌撞撞 一路咬牙撑完
-            </div>
-            
-            <div class="chorus">
-                <strong>[Chorus]</strong><br>
-                还记得那年 春天里<br>
-                我一无所有 闯在这里<br>
-                从泥泞小巷 到高楼林立<br>
-                把汗水 活成勋章的意义<br>
-                <br>
-                如今我站在 春风里<br>
-                肩上有责任 心中有勇气<br>
-                两个小天使 是最好的期许<br>
-                这一路辛苦 都值得 被铭记
-            </div>
-            
-            <div class="verse">
-                <strong>[Verse 3]</strong><br>
-                代码写过几行 青春熬几场<br>
-                压力像浪潮 拍打我肩膀<br>
-                家是我的光 也是我的方向<br>
-                再苦再累 也敢继续往前闯
-            </div>
-            
-            <div class="verse">
-                <strong>[Outro]</strong><br>
-                那些艰难的时光 都已成过往<br>
-                春天还在 我还在 路上
-            </div>
+            <div class="cover-hole"></div>
         </div>
-        
-        <div class="footer">
-            🎛️ BPM: 120 | 风格：流行摇滚 | 制作：hanclaw
+        <div class="song-info">
+            <div class="song-title">深圳追梦</div>
+            <div class="song-artist">hanclaw · 汪峰式摇滚</div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-    <script>
-        const ap = new APlayer({
-            container: document.getElementById('aplayer'),
-            theme: '#764ba2',
-            loop: 'all',
-            lrcType: 0,
-            audio: [{
-                name: '深圳追梦',
-                artist: '汪峰式摇滚',
-                url: './shenzhen-dream.mp3',
-                cover: 'https://picsum.photos/id/1019/400/400'
-            }]
+    <div class="lyrics-section">
+        <div class="lyrics-scroll" id="lyricsScroll"></div>
+    </div>
+
+    <div class="controls">
+        <div class="progress-wrap">
+            <span class="time-label" id="timeCur">0:00</span>
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="time-label" id="timeDur">0:00</span>
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-small" id="btnPrev" title="上一首">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+            </button>
+            <button class="btn btn-play" id="btnPlay" title="播放">
+                <svg id="iconPlay" viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg>
+                <svg id="iconPause" viewBox="0 0 24 24" style="display:none"><rect x="6" y="4" width="4" height="16" fill="#fff"/><rect x="14" y="4" width="4" height="16" fill="#fff"/></svg>
+            </button>
+            <button class="btn btn-small" id="btnNext" title="下一首">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+            </button>
+        </div>
+        <div class="volume-row">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+            <div class="volume-bar" id="volumeBar">
+                <div class="volume-fill" id="volumeFill"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const LRC = [
+    [0,    ""],
+    [2,    "九四年的我 怀揣一个梦"],
+    [6,    "绿皮车摇晃 奔向南方的风"],
+    [10,   "行李箱压着 年少的沉重"],
+    [14,   "霓虹再璀璨 照不进城中村"],
+    [19,   ""],
+    [20,   "出租屋很小 灯光也很暗"],
+    [24,   "代码敲到深夜 无人道晚安"],
+    [28,   "周末的公司 是我的港湾"],
+    [32,   "把孤独和迷茫 写成未来答案"],
+    [37,   ""],
+    [38,   "你放下安稳 跨越千里来相伴"],
+    [42,   "把颠沛流离 换成两个人的暖"],
+    [46,   "日子再艰难 我们不曾回头看"],
+    [50,   "一路跌跌撞撞 一路咬牙撑完"],
+    [55,   ""],
+    [56,   "还记得那年 春天里"],
+    [60,   "我一无所有 闯在这里"],
+    [64,   "从泥泞小巷 到高楼林立"],
+    [68,   "把汗水 活成勋章的意义"],
+    [73,   ""],
+    [74,   "如今我站在 春风里"],
+    [78,   "肩上有责任 心中有勇气"],
+    [82,   "两个小天使 是最好的期许"],
+    [86,   "这一路辛苦 都值得 被铭记"],
+    [91,   ""],
+    [92,   "代码写过几行 青春熬几场"],
+    [95,   "压力像浪潮 拍打我肩膀"],
+    [98,   "家是我的光 也是我的方向"],
+    [101,  "再苦再累 也敢继续往前闯"],
+    [104,  ""],
+    [105,  "那些艰难的时光 都已成过往"],
+    [109,  "春天还在 我还在 路上"],
+    [113,  ""]
+];
+
+const audio = new Audio('./shenzhen-dream.mp3');
+audio.volume = 0.8;
+
+const $ = s => document.querySelector(s);
+const disc       = $('#disc');
+const lyricsEl   = $('#lyricsScroll');
+const progressBar= $('#progressBar');
+const progressFill=$('#progressFill');
+const timeCur    = $('#timeCur');
+const timeDur    = $('#timeDur');
+const btnPlay    = $('#btnPlay');
+const iconPlay   = $('#iconPlay');
+const iconPause  = $('#iconPause');
+const volumeBar  = $('#volumeBar');
+const volumeFill = $('#volumeFill');
+
+let currentIdx = -1;
+
+function buildLyrics() {
+    lyricsEl.innerHTML = LRC.map((l, i) =>
+        `<div class="lyric-line" data-i="${i}">${l[1] || '♪'}</div>`
+    ).join('');
+    lyricsEl.querySelectorAll('.lyric-line').forEach(el => {
+        el.addEventListener('click', () => {
+            const i = +el.dataset.i;
+            audio.currentTime = LRC[i][0];
+            if (audio.paused) togglePlay();
         });
-    </script>
-    <style>
-        /* 播放器歌词样式 */
-        .aplayer-lrc-current {
-            font-size: 18px !important;
-            font-weight: bold !important;
-            color: #ffd700 !important; /* 金色高亮当前播放行 */
-        }
-        .aplayer-lrc p {
-            font-size: 16px !important;
-            color: rgba(255,255,255,0.8) !important;
-        }
-        /* 让静态歌词区域支持平滑滚动 */
-        .lyrics {
-            scroll-behavior: smooth;
-        }
-        /* 静态歌词高亮当前播放行（动态更新） */
-        .lyrics .active-line {
-            color: #ffd700;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            transform: scale(1.05);
-        }
-    </style>
-            }]
-        });
-    </script>
+    });
+}
+
+function findLyricIdx(t) {
+    for (let i = LRC.length - 1; i >= 0; i--) {
+        if (t >= LRC[i][0]) return i;
+    }
+    return 0;
+}
+
+function highlightLyric(idx) {
+    if (idx === currentIdx) return;
+    currentIdx = idx;
+    const lines = lyricsEl.querySelectorAll('.lyric-line');
+    lines.forEach((el, i) => {
+        el.classList.remove('active', 'near');
+        if (i === idx) el.classList.add('active');
+        else if (Math.abs(i - idx) <= 2) el.classList.add('near');
+    });
+    const active = lines[idx];
+    if (active) {
+        const scrollTop = active.offsetTop - lyricsEl.clientHeight / 2 + active.clientHeight / 2;
+        lyricsEl.scrollTo({ top: scrollTop, behavior: 'smooth' });
+    }
+}
+
+function fmt(s) {
+    if (isNaN(s)) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${sec.toString().padStart(2, '0')}`;
+}
+
+function togglePlay() {
+    if (audio.paused) {
+        audio.play();
+        disc.classList.add('playing');
+        iconPlay.style.display = 'none';
+        iconPause.style.display = 'block';
+    } else {
+        audio.pause();
+        disc.classList.remove('playing');
+        iconPlay.style.display = 'block';
+        iconPause.style.display = 'none';
+    }
+}
+
+btnPlay.addEventListener('click', togglePlay);
+$('#btnPrev').addEventListener('click', () => { audio.currentTime = 0; });
+$('#btnNext').addEventListener('click', () => { audio.currentTime = 0; });
+
+audio.addEventListener('loadedmetadata', () => {
+    timeDur.textContent = fmt(audio.duration);
+});
+audio.addEventListener('timeupdate', () => {
+    const t = audio.currentTime;
+    timeCur.textContent = fmt(t);
+    const pct = audio.duration ? (t / audio.duration) * 100 : 0;
+    progressFill.style.width = pct + '%';
+    highlightLyric(findLyricIdx(t));
+});
+audio.addEventListener('ended', () => {
+    disc.classList.remove('playing');
+    iconPlay.style.display = 'block';
+    iconPause.style.display = 'none';
+    currentIdx = -1;
+});
+
+progressBar.addEventListener('click', e => {
+    const rect = progressBar.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+});
+
+volumeBar.addEventListener('click', e => {
+    const rect = volumeBar.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    audio.volume = pct;
+    volumeFill.style.width = (pct * 100) + '%';
+});
+
+buildLyrics();
+</script>
 </body>
 </html>
