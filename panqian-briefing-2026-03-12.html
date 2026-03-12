@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026-03-12</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 10px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px 20px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title .emoji {
+            margin-right: 10px;
+            font-size: 26px;
+        }
+        
+        .event-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .event-card h3 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .event-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+        
+        .event-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .event-meta strong {
+            color: #34495e;
+            margin-right: 5px;
+        }
+        
+        .event-card ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .event-card li {
+            margin-bottom: 8px;
+            color: #34495e;
+        }
+        
+        .market-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 600px) {
+            .market-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .market-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .market-card h3 {
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .market-card .index-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .market-card .index-item:last-child {
+            border-bottom: none;
+        }
+        
+        .market-card .index-name {
+            font-size: 14px;
+            color: #34495e;
+        }
+        
+        .market-card .index-value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .positive {
+            color: #27ae60;
+        }
+        
+        .negative {
+            color: #e74c3c;
+        }
+        
+        .insight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+        }
+        
+        .insight-box strong {
+            color: #856404;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .insight-box p {
+            color: #856404;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .todo-list {
+            background: #e8f5e9;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .todo-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .todo-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .todo-item h4 {
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .todo-item p {
+            font-size: 14px;
+            color: #546e7a;
+            line-height: 1.6;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        
+        .conclusion h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .conclusion ul {
+            margin-left: 20px;
+        }
+        
+        .conclusion li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #95a5a6;
+            font-size: 12px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="subtitle">2026年3月12日（周四）| Marcus 财经分析</div>
+            <div class="subtitle" style="margin-top: 8px; font-size: 13px;">生成时间：09:00 CST</div>
+        </div>
+        
+        <div class="content">
+            <!-- 第一部分：全球财经大事件 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="emoji">🌍</span>
+                    全球财经大事件回顾
+                </h2>
+                
+                <div class="event-card">
+                    <h3>1. IEA史上最大规模石油储备释放</h3>
+                    <div class="event-meta">
+                        <span><strong>时间：</strong>2026年3月11日</span>
+                        <span><strong>市场：</strong>全球能源市场</span>
+                    </div>
+                    <p><strong>事件：</strong>国际能源署（IEA）32个成员国一致同意释放4亿桶战略石油储备，这是IEA历史上最大规模的储备释放，是2022年俄乌战争时期1.82亿桶的两倍多。</p>
+                    <ul>
+                        <li><strong>供应冲击应对：</strong>伊朗封锁霍尔木兹海峡导致全球约6%的石油供应中断</li>
+                        <li><strong>通胀预期管理：</strong>尽管释放储备，WTI原油仍上涨5%至$87.65/桶，Brent原油涨至$90.77/桶</li>
+                        <li><strong>宏观影响：</strong>油价持续高企将推高全球通胀预期，削弱各国央行降息空间</li>
+                    </ul>
+                </div>
+                
+                <div class="event-card">
+                    <h3>2. 美国2月CPI符合预期但通胀粘性显现</h3>
+                    <div class="event-meta">
+                        <span><strong>时间：</strong>2026年3月11日公布</span>
+                        <span><strong>市场：</strong>美国</span>
+                    </div>
+                    <p><strong>数据：</strong>美国2月CPI环比上涨0.3%，同比上涨2.4%，符合华尔街预期，但未能给市场带来"通胀快速降温"的惊喜。</p>
+                    <ul>
+                        <li><strong>美联储政策路径：</strong>强化3月17-18日FOMC会议维持利率不变（3.5%-3.75%）的预期，首次降息或推迟至6月</li>
+                        <li><strong>债券市场反应：</strong>10年期美债收益率上涨8个基点至4.22%，30年期涨至4.87%</li>
+                        <li><strong>滞胀风险：</strong>2月就业意外萎缩（失业率升至4.4%）叠加通胀粘性，美联储面临两难选择</li>
+                    </ul>
+                </div>
+                
+                <div class="event-card">
+                    <h3>3. 中东战事升级与能源贸易冻结风险</h3>
+                    <div class="event-meta">
+                        <span><strong>时间：</strong>3月10-11日持续</span>
+                        <span><strong>市场：</strong>中东、全球能源市场</span>
+                    </div>
+                    <p><strong>事件：</strong>伊朗军方警告油价可能冲至$200/桶，霍尔木兹海峡再有3艘商船遇袭，特朗普称战事"大致完成"但市场仍高度紧张。</p>
+                    <ul>
+                        <li><strong>能源供应链风险：</strong>霍尔木兹海峡封锁威胁全球能源贸易</li>
+                        <li><strong>避险情绪：</strong>美元指数上涨0.38%至99.20，VIX恐慌指数升至25.21</li>
+                        <li><strong>全球增长担忧：</strong>持续的能源价格冲击可能引发全球经济衰退</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 第二部分：市场表现 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="emoji">📈</span>
+                    昨日市场表现回顾（3月11日）
+                </h2>
+                
+                <div class="market-grid">
+                    <div class="market-card">
+                        <h3>🇺🇸 美股三大指数</h3>
+                        <div class="index-item">
+                            <span class="index-name">道琼斯</span>
+                            <span class="index-value negative">-289点 (-0.61%)</span>
+                        </div>
+                        <div class="index-item">
+                            <span class="index-name">标普500</span>
+                            <span class="index-value negative">-0.08%</span>
+                        </div>
+                        <div class="index-item">
+                            <span class="index-name">纳斯达克</span>
+                            <span class="index-value positive">+0.08%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="market-card">
+                        <h3>🇭🇰 港股</h3>
+                        <div class="index-item">
+                            <span class="index-name">恒生指数</span>
+                            <span class="index-value negative">-61点 (-0.24%)</span>
+                        </div>
+                        <div class="index-item">
+                            <span class="index-name">恒生科技</span>
+                            <span class="index-value negative">-5.68点 (-0.11%)</span>
+                        </div>
+                        <div class="index-item">
+                            <span class="index-name">成交额</span>
+                            <span class="index-value">2,544.81亿港元</span>
+                        </div>
+                    </div>
+                    
+                    <div class="market-card">
+                        <h3>🇨🇳 A股</h3>
+                        <div class="index-item">
+                            <span class="index-name">上证指数</span>
+                            <span class="index-value positive">+10.29点 (+0.25%)</span>
+                        </div>
+                        <div class="index-item">
+                            <span class="index-name">深证成指</span>
+                            <span class="index-value positive">+111.34点 (+0.78%)</span>
+                        </div>
+                        <div class="index-item">
+                            <span class="index-name">创业板指</span>
+                            <span class="index-value positive">+43.39点 (+1.31%)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="market-card">
+                        <h3>💰 数字货币</h3>
+                        <div class="index-item">
+                            <span class="index-name">比特币</span>
+                            <span class="index-value positive">$70,229 (+0.39%)</span>
+                        </div>
+                        <div class="index-item">
+                            <span class="index-name">以太坊</span>
+                            <span class="index-value positive">$2,052 (+0.74%)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-box">
+                    <strong>📊 市场信号解读</strong>
+                    <p><strong>美股：</strong>在油价上涨与通胀数据之间摇摆，道指受能源成本压力拖累，纳指受科技股支撑（Oracle暴涨13%），整体呈现谨慎观望态势。</p>
+                    <p style="margin-top: 8px;"><strong>港股：</strong>受OpenClaw监管传闻影响，AI概念股承压，但新能源汽车受益于"算力+电力"协同政策逆势大涨（蔚来+14.05%，宁德时代+9%）。</p>
+                    <p style="margin-top: 8px;"><strong>A股：</strong>呈现"指数涨、个股跌多"的分化格局，资金从高位科技题材撤出，转向低估值的化工、电力等防御性板块，反映存量资金轮动。</p>
+                </div>
+            </div>
+            
+            <!-- 第三部分：投资观察重点 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="emoji">🔍</span>
+                    投资观察重点
+                </h2>
+                
+                <div class="event-card">
+                    <h3>🇺🇸 美股：防御性布局，警惕估值风险</h3>
+                    <p><strong>需要重点观察：</strong></p>
+                    <ul>
+                        <li><strong>美联储3月17-18日FOMC会议：</strong>市场预期维持利率不变，关注点阵图和鲍威尔对"滞胀风险"的表态</li>
+                        <li><strong>科技板块分化：</strong>Oracle云计算提振估值，但整体科技股面临"高利率+高估值"双重压力</li>
+                        <li><strong>能源成本传导：</strong>油价若持续高于$85/桶，将侵蚀企业利润率（航空、物流、制造业）</li>
+                        <li><strong>就业市场恶化：</strong>2月失业率升至4.4%，若持续恶化可能触发"紧急降息"</li>
+                    </ul>
+                    <p style="margin-top: 12px;"><span class="tag">风险</span>滞胀预期可能引发估值重估，成长股首当其冲</p>
+                    <p><span class="tag">机会</span>防御性板块（公用事业、必需消费品）和能源股受益于油价上涨</p>
+                </div>
+                
+                <div class="event-card">
+                    <h3>🇭🇰 港股/中国市场：政策博弈与监管不确定性</h3>
+                    <p><strong>需要重点观察：</strong></p>
+                    <ul>
+                        <li><strong>OpenClaw监管传闻：</strong>据报中国限制国企和政府机构使用"龙虾"，AI概念股承压，需关注政策明朗化</li>
+                        <li><strong>新能源汽车产业链：</strong>蔚来、吉利、宁德时代逆势大涨，受益于政策和出口数据超预期，是当前港股最强主线</li>
+                        <li><strong>汇率风险：</strong>美元指数升至99.20，人民币贬值压力加大，可能引发资金外流</li>
+                        <li><strong>地产与消费：</strong>港股地产股持续疲软，反映内需复苏缓慢</li>
+                    </ul>
+                    <p style="margin-top: 12px;"><span class="tag">风险</span>AI监管政策不确定性、人民币贬值、外资流出</p>
+                    <p><span class="tag">机会</span>新能源汽车产业链（电池、整车）、出口链（家电、机械）</p>
+                </div>
+                
+                <div class="event-card">
+                    <h3>🇨🇳 A股：存量博弈下的结构性机会</h3>
+                    <p><strong>需要重点观察：</strong></p>
+                    <ul>
+                        <li><strong>量化轮动主导：</strong>市场呈现"指数强、个股弱"特征，量化资金占成交30%，板块轮动从"周度"缩短至"日内"</li>
+                        <li><strong>化工涨价链：</strong>钛白粉、草甘膦、磷化工等产品价格持续上涨，相关龙头盈利确定性强</li>
+                        <li><strong>电力设备：</strong>受益于"算力+电力"协同政策和AI算力需求增长（阳光电源+9.49%，宁德时代+5%）</li>
+                        <li><strong>军工板块调整：</strong>3月11日领跌，需关注是否为短期获利回吐</li>
+                    </ul>
+                    <p style="margin-top: 12px;"><span class="tag">风险</span>科创50跌1.37%，科技题材高位回调风险加大</p>
+                    <p><span class="tag">机会</span>低估值化工、电力设备、新能源（固态电池、钙钛矿）</p>
+                </div>
+                
+                <div class="event-card">
+                    <h3>💰 数字货币：技术面支撑，但资本流出压力仍存</h3>
+                    <p><strong>需要重点观察：</strong></p>
+                    <ul>
+                        <li><strong>BTC关键位：</strong>$70,000为支撑，$73,000为阻力，需突破才能确认上行趋势</li>
+                        <li><strong>ETH链上活跃度与价格脱钩：</strong>日活地址创历史新高（200万），但ETH价格半年跌30%</li>
+                        <li><strong>宏观驱动：</strong>油价回落提振风险偏好，但美联储降息预期推迟削弱流动性支撑</li>
+                    </ul>
+                    <p style="margin-top: 12px;"><span class="tag">风险</span>美联储维持高利率削弱加密货币吸引力</p>
+                    <p><span class="tag">机会</span>若油价持续回落+美联储6月降息预期升温，BTC有望突破$73,000</p>
+                </div>
+                
+                <div class="event-card">
+                    <h3>📊 基金/被动指数：哑铃型配置策略</h3>
+                    <p><strong>资产配置建议：</strong></p>
+                    <ul>
+                        <li><strong>稳健底仓（60%）：</strong>沪深300、标普500等宽基指数，防御性板块（公用事业、必需消费品）</li>
+                        <li><strong>灵活波段（30%）：</strong>新能源（电池、光伏）、化工涨价链、出口链（家电、机械）</li>
+                        <li><strong>现金储备（10%）：</strong>应对市场波动，等待更明确的趋势信号</li>
+                    </ul>
+                    <div class="insight-box" style="margin-top: 15px;">
+                        <strong>💡 核心逻辑</strong>
+                        <p>当前市场处于"中期向好、短期震荡"格局，量化轮动加剧波动但不改变趋势，配置上采取"防御+进攻"结合的哑铃型策略，避免追高纯题材炒作标的。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第四部分：今日待办 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="emoji">✅</span>
+                    今日待办事项
+                </h2>
+                
+                <div class="todo-list">
+                    <div class="todo-item">
+                        <h4>1. 关注美联储官员讲话（3月12日）</h4>
+                        <p><strong>事项：</strong>美联储副主席Michelle W. Bowman将在"Navigating What's Next"虚拟会议上发表讲话（时间待定）</p>
+                        <p><strong>重要性：</strong>FOMC会议前的重要窗口期，需关注其对通胀、就业和利率路径的最新表态</p>
+                    </div>
+                    
+                    <div class="todo-item">
+                        <h4>2. 监控油价与中东局势进展</h4>
+                        <p><strong>事项：</strong>关注霍尔木兹海峡通行情况、伊朗与美以谈判进展、油价是否突破$90/桶</p>
+                        <p><strong>重要性：</strong>油价是当前市场最大的不确定性因素，直接影响通胀预期和风险偏好</p>
+                    </div>
+                    
+                    <div class="todo-item">
+                        <h4>3. 跟踪A股新能源与化工板块资金流向</h4>
+                        <p><strong>事项：</strong>观察宁德时代、阳光电源、钛白粉/草甘膦龙头是否延续强势，以及量化资金是否继续轮动</p>
+                        <p><strong>重要性：</strong>这两条主线是当前A股最强逻辑，资金持续性决定短期操作方向</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 核心结论 -->
+            <div class="conclusion">
+                <h3>📌 核心结论</h3>
+                <p style="margin-bottom: 15px;">市场处于"地缘冲突+通胀粘性+政策观望"的三重压力下，短期震荡分化不可避免。</p>
+                <ul>
+                    <li><strong>美股：</strong>防御为主，等待美联储3月会议明确信号</li>
+                    <li><strong>港股/A股：</strong>结构性机会突出，重点布局新能源产业链和化工涨价链</li>
+                    <li><strong>数字货币：</strong>技术面支撑尚可，但需突破关键阻力才能确认趋势</li>
+                    <li><strong>配置策略：</strong>哑铃型（稳健底仓+灵活波段），避免追高，保持现金储备</li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;"><strong>⚠️ 风险提示：</strong>地缘冲突升级、油价失控、美联储政策转向超预期，均可能引发市场剧烈波动。</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>免责声明：</strong>本简报仅供参考，不构成投资建议。投资有风险，决策需谨慎。</p>
+            <p style="margin-top: 10px;">数据来源：Exa AI Search, New York Times, CNBC, Reuters, 新浪财经, 财联社, Yahoo Finance</p>
+            <p style="margin-top: 10px;">© 2026 Marcus 财经分析 | Powered by OpenClaw</p>
+        </div>
+    </div>
+</body>
+</html>
