@@ -1,0 +1,235 @@
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;盘前简报 | 2026年3月15日&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        .header h1 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .header .date {
+            color: #666;
+            font-size: 1rem;
+        }
+        h2 {
+            color: #764ba2;
+            margin: 30px 0 15px 0;
+            font-size: 1.5rem;
+            border-left: 4px solid #667eea;
+            padding-left: 12px;
+        }
+        h3 {
+            color: #555;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+        ul {
+            margin: 10px 0 20px 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .event {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #764ba2;
+        }
+        .event h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .market-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .market-card .name {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .market-card .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .market-card.positive {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .market-card.negative {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px 0;
+            color: #856404;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="header"&gt;
+            &lt;h1&gt;📊 盘前简报&lt;/h1&gt;
+            &lt;div class="date"&gt;2026年3月15日&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h2&gt;一、全球财经大事件&lt;/h2&gt;
+        
+        &lt;div class="event"&gt;
+            &lt;h4&gt;1. 美国空袭伊朗石油枢纽，中东局势急剧升温&lt;/h4&gt;
+            &lt;p&gt;当地时间3月13日，美军对伊朗石油出口枢纽哈尔克岛发动“猛烈空袭”，特朗普称“只要有需要战争将持续”。受此影响，国际油价大幅上涨：&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;NYMEX WTI原油期货收于每桶98.71美元，涨幅3.11%，本周累计上涨9.25%&lt;/li&gt;
+                &lt;li&gt;ICE布油收于每桶103.89美元，涨幅3.41%，本周累计涨幅超12%&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+
+        &lt;div class="event"&gt;
+            &lt;h4&gt;2. 美股连续第三周下跌，标普创年内新低&lt;/h4&gt;
+            &lt;p&gt;北京时间3月14日凌晨，美股周五收跌，三大股指本周均录得跌幅：&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;道指跌0.26%，报46558.47点，本周累计下跌2%&lt;/li&gt;
+                &lt;li&gt;纳指跌0.93%，报22105.36点，本周累计下跌1.26%&lt;/li&gt;
+                &lt;li&gt;标普500指数跌0.61%，报6632.19点，创今年以来新低，本周累计下跌1.6%&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+
+        &lt;div class="event"&gt;
+            &lt;h4&gt;3. 黄金白银暴跌，能源板块逆势走强&lt;/h4&gt;
+            &lt;ul&gt;
+                &lt;li&gt;本周国际金价下跌1.88%，国际银价下跌3.52%&lt;/li&gt;
+                &lt;li&gt;能源链（油气、煤化工、化肥）板块在地缘局势催化下涨价确定性较高&lt;/li&gt;
+                &lt;li&gt;化工、风电、核电、锂电池等板块逆势走强&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+
+        &lt;h2&gt;二、昨日市场表现&lt;/h2&gt;
+        
+        &lt;h3&gt;美股市场&lt;/h3&gt;
+        &lt;div class="market-grid"&gt;
+            &lt;div class="market-card negative"&gt;
+                &lt;div class="name"&gt;道琼斯指数&lt;/div&gt;
+                &lt;div class="value"&gt;-0.26%&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="market-card negative"&gt;
+                &lt;div class="name"&gt;纳斯达克指数&lt;/div&gt;
+                &lt;div class="value"&gt;-0.93%&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="market-card negative"&gt;
+                &lt;div class="name"&gt;标普500指数&lt;/div&gt;
+                &lt;div class="value"&gt;-0.61%&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;港股市场&lt;/h3&gt;
+        &lt;div class="market-grid"&gt;
+            &lt;div class="market-card positive"&gt;
+                &lt;div class="name"&gt;恒生指数&lt;/div&gt;
+                &lt;div class="value"&gt;+0.51%&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;A股市场（3月13日）&lt;/h3&gt;
+        &lt;div class="market-grid"&gt;
+            &lt;div class="market-card negative"&gt;
+                &lt;div class="name"&gt;上证指数&lt;/div&gt;
+                &lt;div class="value"&gt;-0.81%&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="market-card negative"&gt;
+                &lt;div class="name"&gt;深证成指&lt;/div&gt;
+                &lt;div class="value"&gt;-0.65%&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="market-card negative"&gt;
+                &lt;div class="name"&gt;创业板指&lt;/div&gt;
+                &lt;div class="value"&gt;-0.22%&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;加密货币&lt;/h3&gt;
+        &lt;div class="market-grid"&gt;
+            &lt;div class="market-card positive"&gt;
+                &lt;div class="name"&gt;比特币 (BTC)&lt;/div&gt;
+                &lt;div class="value"&gt;$84,000+&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;h2&gt;三、今日观察重点&lt;/h2&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;strong&gt;中东局势后续进展&lt;/strong&gt;：美国是否继续军事行动、伊朗如何反击、霍尔木兹海峡运输情况&lt;/li&gt;
+            &lt;li&gt;&lt;strong&gt;油价与通胀预期&lt;/strong&gt;：原油价格走势对全球通胀和央行政策的影响&lt;/li&gt;
+            &lt;li&gt;&lt;strong&gt;A股结构分化&lt;/strong&gt;：能源链 vs 科技股的跷跷板效应&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;div class="warning"&gt;
+            ⚠️ 以上分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+        &lt;/div&gt;
+
+        &lt;div class="footer"&gt;
+            &lt;p&gt;生成时间：2026年3月15日 08:50（北京时间）&lt;/p&gt;
+            &lt;p&gt;由 hanbot 生成 🦊&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
