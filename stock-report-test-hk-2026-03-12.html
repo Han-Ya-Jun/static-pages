@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEST.HK 深度分析报告 - 2026-03-12</title>
+<style>
+:root {
+  --bg: #0d1117; --surface: #161b22; --border: #30363d;
+  --text: #e6edf3; --text-secondary: #8b949e; --accent: #58a6ff;
+  --green: #3fb950; --red: #f85149; --yellow: #d29922; --orange: #db6d28;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+  max-width: 720px; margin: 0 auto; padding: 16px;
+}
+.header {
+  background: linear-gradient(135deg, #1a1f35 0%, #0d1117 100%);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px; margin-bottom: 16px; text-align: center;
+}
+.header h1 { font-size: 1.5em; margin-bottom: 4px; }
+.header .date { color: var(--text-secondary); font-size: 0.9em; }
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px; margin-bottom: 12px;
+}
+.card h2 {
+  font-size: 1.1em; color: var(--accent); margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.price-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+.price-item {
+  background: #1c2333; border-radius: 8px; padding: 12px; text-align: center;
+}
+.price-item .label { font-size: 0.75em; color: var(--text-secondary); }
+.price-item .value { font-size: 1.2em; font-weight: 700; margin-top: 4px; }
+.up { color: var(--green); }
+.down { color: var(--red); }
+.score-bar {
+  height: 8px; border-radius: 4px; background: #21262d; margin-top: 6px; overflow: hidden;
+}
+.score-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+.news-item {
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.news-item:last-child { border-bottom: none; }
+.news-item .title { font-weight: 600; }
+.news-item .meta { font-size: 0.8em; color: var(--text-secondary); margin-top: 4px; }
+.chart-container {
+  text-align: center; margin: 16px 0;
+}
+.chart-container img {
+  max-width: 100%; border-radius: 8px; border: 1px solid var(--border);
+}
+.report-text {
+  white-space: pre-wrap; font-size: 0.95em; line-height: 1.8;
+}
+.disclaimer {
+  background: #1c1410; border: 1px solid #5a3e28; border-radius: 8px;
+  padding: 14px; margin-top: 16px; font-size: 0.8em; color: var(--yellow);
+}
+.footer {
+  text-align: center; padding: 20px 0; font-size: 0.75em; color: var(--text-secondary);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>TEST.HK 深度分析报告</h1>
+  <div class="date">2026-03-12 23:34</div>
+</div>
+
+<div class="card">
+  <h2>实时行情</h2>
+  <div class="price-grid">
+    <div class="price-item"><div class="label">现价</div><div class="value up">100.00</div></div>
+    <div class="price-item"><div class="label">涨跌幅</div><div class="value up">+2.50%</div></div>
+    <div class="price-item"><div class="label">最高</div><div class="value">102</div></div>
+    <div class="price-item"><div class="label">最低</div><div class="value">98</div></div>
+    <div class="price-item"><div class="label">成交量</div><div class="value">1.2亿</div></div>
+    <div class="price-item"><div class="label">成交额</div><div class="value">12亿</div></div>
+    <div class="price-item"><div class="label">市值</div><div class="value">5000亿</div></div>
+  </div>
+</div>
+<div class="card">
+  <h2>量化评分: 72/100 — 买入</h2>
+  <div style="margin-bottom:12px;">
+    <div class="score-bar" style="height:12px;">
+      <div class="score-fill" style="width:72%;background:var(--accent)"></div>
+    </div>
+  </div>
+  <div style="margin-bottom:8px;">
+  <div style="display:flex;justify-content:space-between;font-size:0.9em;">
+    <span>趋势</span><span style="color:var(--green)">80</span>
+  </div>
+  <div class="score-bar"><div class="score-fill" style="width:80%;background:var(--green)"></div></div>
+</div><div style="margin-bottom:8px;">
+  <div style="display:flex;justify-content:space-between;font-size:0.9em;">
+    <span>动量</span><span style="color:var(--yellow)">65</span>
+  </div>
+  <div class="score-bar"><div class="score-fill" style="width:65%;background:var(--yellow)"></div></div>
+</div><div style="margin-bottom:8px;">
+  <div style="display:flex;justify-content:space-between;font-size:0.9em;">
+    <span>波动率</span><span style="color:var(--green)">70</span>
+  </div>
+  <div class="score-bar"><div class="score-fill" style="width:70%;background:var(--green)"></div></div>
+</div><div style="margin-bottom:8px;">
+  <div style="display:flex;justify-content:space-between;font-size:0.9em;">
+    <span>成交量</span><span style="color:var(--yellow)">60</span>
+  </div>
+  <div class="score-bar"><div class="score-fill" style="width:60%;background:var(--yellow)"></div></div>
+</div>
+</div>
+
+<div class="card">
+  <h2>相关新闻</h2>
+  <div class="news-item">
+  <div class="title">测试新闻</div>
+  
+  <div class="meta">测试来源 2026-03-12</div>
+</div>
+</div>
+
+<div class="card">
+  <h2>综合分析</h2>
+  <div class="report-text"><div>这是一个测试报告</div>
+<br>
+<div style="margin:10px 0;font-weight:600">💹 实时行情</div>
+<div style="padding-left:16px;margin:2px 0">- 现价: 100.00</div>
+<div style="padding-left:16px;margin:2px 0">- 涨跌幅: +2.5%</div>
+<br>
+<div style="margin:10px 0;font-weight:600">🎯 量化评分: 72/100</div>
+<br>
+<div style="margin:10px 0;font-weight:600">📰 新闻</div>
+<div style="padding-left:16px;margin:2px 0">- 测试新闻标题</div></div>
+</div>
+
+<div class="disclaimer">
+  ⚠️ 免责声明：本报告由 AI 自动生成，仅供参考学习，不构成任何投资建议。投资有风险，入市需谨慎。数据来源于长桥 OpenAPI，可能存在延迟。
+</div>
+
+<div class="footer">
+  Powered by OpenClaw &middot; 长桥 OpenAPI &middot; 2026-03-12
+</div>
+
+</body>
+</html>
