@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 4月8日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.3);
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .header .date {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon {
+            font-size: 1.3em;
+        }
+        .event-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #e94560;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .event-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.2);
+        }
+        .event-card.urgent {
+            border-left-color: #ff4757;
+        }
+        .event-card.warning {
+            border-left-color: #ffa502;
+        }
+        .event-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .event-desc {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .market-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .market-item .flag {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .market-item .name {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 5px;
+        }
+        .market-item .value {
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        .market-item .change {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .down { color: #ff4757; }
+        .up { color: #2ed573; }
+        .watch-list {
+            list-style: none;
+        }
+        .watch-list li {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .watch-list li::before {
+            content: "📌";
+            font-size: 1.2em;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85em;
+        }
+        .disclaimer {
+            background: rgba(255,71,87,0.1);
+            border: 1px solid rgba(255,71,87,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .disclaimer-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8em; }
+            .section { padding: 20px; }
+            .market-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="date">2026年4月8日 星期三</div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🌍</span>全球财经大事件</h2>
+            
+            <div class="event-card urgent">
+                <div class="event-title">🔴 特朗普"对等关税"引发全球金融"黑色星期一"</div>
+                <div class="event-desc">特朗普宣布对全球多国加征"对等关税"，中国随即宣布对所有美国商品加征34%关税进行坚决反制。4月7日全球遭遇"黑色星期一"，MSCI亚太指数暴跌，多国股市触发熔断，原油、黄金、加密货币全线重挫。</div>
+            </div>
+            
+            <div class="event-card warning">
+                <div class="event-title">🟡 全美爆发大规模反特朗普游行</div>
+                <div class="event-desc">4月5日"住手"(Hands Off)抗议活动覆盖全美50个州，约1300场集会，超150个团体、数百万人参与。示威者抗议关税政策，显示美国国内对贸易政策的严重分歧，增加政策不确定性。</div>
+            </div>
+            
+            <div class="event-card">
+                <div class="event-title">🟢 中东局势紧张升级，油价飙升</div>
+                <div class="event-desc">特朗普对伊朗发出最后通牒，暗示将进行激进攻击，德黑兰切断沟通渠道。特朗普预告"一个文明今晚可能消亡"，油价飙升突破115美元，加剧全球滞胀风险。</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="icon">📈</span>昨日市场表现</h2>
+            <div class="market-grid">
+                <div class="market-item">
+                    <div class="flag">🇺🇸</div>
+                    <div class="name">美股</div>
+                    <div class="value down">道指 -0.9%</div>
+                    <div class="change down">纳指 -1% | 标普 -1%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">🇭🇰</div>
+                    <div class="name">港股</div>
+                    <div class="value down">恒指 -13%</div>
+                    <div class="change down">恒生科技 -17%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">🇨🇳</div>
+                    <div class="name">A股</div>
+                    <div class="value down">沪指 -7%</div>
+                    <div class="change down">创业板 -7%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">₿</div>
+                    <div class="name">加密货币</div>
+                    <div class="value down">BTC $76,000</div>
+                    <div class="change down">ETH $1,500</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="icon">👀</span>今日观察重点</h2>
+            <ul class="watch-list">
+                <li><strong>中美关税博弈进展</strong> — 关注双方是否释放缓和信号或进一步反制措施</li>
+                <li><strong>美股期货及亚太开盘</strong> — 观察技术性反弹或继续下探，关注VIX恐慌指数</li>
+                <li><strong>美联储官员表态</strong> — 关税引发滞胀风险，关注货币政策路径指引</li>
+            </ul>
+        </div>
+
+        <div class="disclaimer">
+            <div class="disclaimer-icon">⚠️</div>
+            <p>以上分析仅供参考，不构成投资建议</p>
+            <p style="margin-top:10px;font-size:0.85em;">投资有风险，入市需谨慎</p>
+        </div>
+
+        <div class="footer">
+            <p>报告生成时间：2026-04-08 08:50 (Asia/Shanghai)</p>
+            <p style="margin-top:10px;">🦊 hanbot 自动生成</p>
+        </div>
+    </div>
+</body>
+</html>
