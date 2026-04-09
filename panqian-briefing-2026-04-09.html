@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026年4月9日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '📊';
+            font-size: 60px;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        .header .meta {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 15px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .event-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .event-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .event-title {
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .event-desc {
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .market-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .market-name {
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+        
+        .market-data {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .index-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .index-name {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+
+        .index-value {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .up { color: #e74c3c; }
+        .down { color: #27ae60; }
+        
+        .crypto-card {
+            background: linear-gradient(135deg, #f7931a 0%, #ffd700 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        
+        .crypto-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .crypto-data {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .crypto-item {
+            text-align: center;
+        }
+        
+        .crypto-name {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .crypto-price {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .crypto-change {
+            font-size: 12px;
+        }
+        
+        .focus-list {
+            list-style: none;
+        }
+        
+        .focus-list li {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .focus-list li::before {
+            content: attr(data-num);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .risk-high { border-left: 4px solid #e74c3c; }
+        .risk-medium { border-left: 4px solid #f39c12; }
+        .risk-low { border-left: 4px solid #27ae60; }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .summary-box h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .summary-box p {
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .disclaimer {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #856404;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 22px;
+            }
+            .content {
+                padding: 20px;
+            }
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>盘前简报</h1>
+            <div class="date">2026年4月9日 星期三</div>
+            <div class="meta">由 hanbot AI 助手生成</div>
+        </div>
+        
+        <div class="content">
+            <div class="summary-box">
+                <h3>📈 市场概览</h3>
+                <p>全球市场延续震荡格局，美股在剧烈波动后小幅企稳，纳指终结两连跌。A股遭遇重挫后迎来"中国版平准基金"强力护盘，国资平台集体增持释放维稳信号。加密货币市场企稳反弹，BTC回升至$71,500上方。</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">🌍 全球财经大事件</h2>
+                
+                <div class="event-card">
+                    <div class="event-title">特朗普或暂停部分国家关税90天</div>
+                    <div class="event-desc">美国国家经济委员会主任哈塞特表示，特朗普正考虑对部分国家暂停90天关税，并表态"是时候适度缓和关税措辞"。如落实将大幅缓解贸易战担忧。</div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-title">欧盟计划对美征收反制关税</div>
+                    <div class="event-desc">欧盟委员会提议对美国商品征收25%反制关税，分两批于4月15日和5月15日生效。4月9日成员国将投票表决，通过门槛为无代表欧盟65%人口的15国反对。</div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-title">"中国版平准基金"入市护盘</div>
+                    <div class="event-desc">中国国新、中国诚通等国有资本运营平台宣布大额增持央企股票和科技创新类ETF。中央汇金表态将继续增持。光大证券评价为"中国版平准基金"。</div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-title">宁德时代宣布40-80亿回购</div>
+                    <div class="event-desc">宁德时代拟以40-80亿元回购股份，回购价上限392.32元/股。同时市场传闻其拟收购蔚来能源控股权，公司回应暂无更多公开信息。</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">📊 昨日市场表现</h2>
+                
+                <div class="market-card">
+                    <div class="market-name">🇺🇸 美股（4月8日）</div>
+                    <div class="market-data">
+                        <div class="index-item">
+                            <div class="index-name">道琼斯</div>
+                            <div class="index-value down">-0.91%</div>
+                        </div>
+                        <div class="index-item">
+                            <div class="index-name">纳斯达克</div>
+                            <div class="index-value up">+0.10%</div>
+                        </div>
+                        <div class="index-item">
+                            <div class="index-name">标普500</div>
+                            <div class="index-value down">-0.23%</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        纳指终结两连跌，盘中振幅超9%。英伟达+3%，苹果-3%，特斯拉-2%
+                    </div>
+                </div>
+                
+                <div class="market-card">
+                    <div class="market-name">🇪🇺 欧洲股市</div>
+                    <div class="market-data">
+                        <div class="index-item">
+                            <div class="index-name">STOXX 600</div>
+                            <div class="index-value down">-3.39%</div>
+                        </div>
+                        <div class="index-item">
+                            <div class="index-name">德国DAX</div>
+                            <div class="index-value down">-2.84%</div>
+                        </div>
+                        <div class="index-item">
+                            <div class="index-name">法国股指</div>
+                            <div class="index-value down">-3.64%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="market-card">
+                    <div class="market-name">🇨🇳 A股（4月8日）</div>
+                    <div class="market-data">
+                        <div class="index-item">
+                            <div class="index-name">上证指数</div>
+                            <div class="index-value down">-7.34%</div>
+                        </div>
+                        <div class="index-item">
+                            <div class="index-name">深证成指</div>
+                            <div class="index-value down">-9.66%</div>
+                        </div>
+                        <div class="index-item">
+                            <div class="index-name">创业板指</div>
+                            <div class="index-value down">-12.50%</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        全市场超5200只个股下跌，逾2900股跌停，成交额16,180亿元放量明显。富时A50期货夜盘涨3%
+                    </div>
+                </div>
+                
+                <div class="crypto-card">
+                    <div class="crypto-title">₿ 加密货币</div>
+                    <div class="crypto-data">
+                        <div class="crypto-item">
+                            <div class="crypto-name">Bitcoin</div>
+                            <div class="crypto-price">$71,500+</div>
+                            <div class="crypto-change">+3.72%</div>
+                        </div>
+                        <div class="crypto-item">
+                            <div class="crypto-name">Ethereum</div>
+                            <div class="crypto-price">~$3,600</div>
+                            <div class="crypto-change">+6.01%</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 13px; opacity: 0.9;">
+                        全球加密市值回升至$2.52万亿，恐惧贪婪指数改善
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">👁️ 今日观察重点</h2>
+                <ul class="focus-list">
+                    <li data-num="1" class="risk-high">
+                        <strong>欧盟反制关税投票（4月9日）</strong><br>
+                        今日成员国投票表决，若通过则4月15日起对美征收25%关税，贸易战风险升级
+                    </li>
+                    <li data-num="2" class="risk-high">
+                        <strong>特朗普关税政策动向</strong><br>
+                        关注90天暂停关税传闻是否获得官方确认，政策不确定性高
+                    </li>
+                    <li data-num="3" class="risk-medium">
+                        <strong>A股护盘资金动向</strong><br>
+                        关注汇金及国资平台后续增持规模和节奏，富时A50期货涨3%预示开盘情绪好转
+                    </li>
+                    <li data-num="4" class="risk-low">
+                        <strong>宁德时代回购进展</strong><br>
+                        40-80亿回购计划实施节奏，及对创业板情绪的提振作用
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">📅 今日财经日历</h2>
+                <div class="market-card" style="text-align: left;">
+                    <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                        <span>待定</span>
+                        <span style="flex: 1; margin: 0 15px;">欧盟成员国反制关税投票</span>
+                        <span style="color: #e74c3c;">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                        <span>20:30</span>
+                        <span style="flex: 1; margin: 0 15px;">美国初请失业金人数</span>
+                        <span style="color: #f39c12;">⭐⭐⭐</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                        <span>待定</span>
+                        <span style="flex: 1; margin: 0 15px;">特朗普关税政策最新表态</span>
+                        <span style="color: #e74c3c;">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                <strong>⚠️ 免责声明</strong><br>
+                以上分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。本报告由 hanbot AI 助手基于公开信息自动生成，数据可能存在延迟或误差，请以官方渠道为准。
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>报告生成时间：2026-04-09 08:50</p>
+            <p>数据来源：同花顺、财联社、央视新闻、华尔街见闻等</p>
+            <p>🦊 Powered by hanbot</p>
+        </div>
+    </div>
+</body>
+</html>
