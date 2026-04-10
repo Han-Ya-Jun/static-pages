@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 4月10日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .date {
+            color: #aaa;
+            font-size: 1.1em;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+        }
+        .card h2 {
+            color: #f39c12;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(243,156,18,0.3);
+        }
+        .event {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-left: 4px solid #e74c3c;
+        }
+        .event:nth-child(2) { border-left-color: #f39c12; }
+        .event:nth-child(3) { border-left-color: #27ae60; }
+        .event h3 {
+            color: #fff;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        .event p {
+            color: #bbb;
+            font-size: 0.95em;
+        }
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .market-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .market-item .flag {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+        .market-item .name {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .market-item .value {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .market-item .change {
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        .positive { color: #27ae60; }
+        .negative { color: #e74c3c; }
+        .focus-list {
+            list-style: none;
+        }
+        .focus-list li {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .focus-list li::before {
+            content: "📌";
+            font-size: 1.2em;
+        }
+        .focus-list li strong {
+            color: #f39c12;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.85em;
+        }
+        .footer .warning {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8em; }
+            .market-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="date">2026年4月10日 星期五</div>
+        </div>
+
+        <div class="card">
+            <h2>🌍 全球财经大事件</h2>
+            
+            <div class="event">
+                <h3>特朗普宣布90天关税暂停（中国除外）</h3>
+                <p>特朗普突然宣布暂停对多数国家的新关税90天，但将中国关税提高至125%；美股应声创历史级反弹，标普创2008年以来最大单日涨幅</p>
+            </div>
+            
+            <div class="event">
+                <h3>霍尔木兹海峡通航仍受阻</h3>
+                <p>伊朗对通过海峡的油轮收取每桶1美元费用，要求以人民币或加密货币支付；日均通行船只从138艘降至不足10艘</p>
+            </div>
+            
+            <div class="event">
+                <h3>美联储3月会议纪要释放鹰派信号</h3>
+                <p>多数官员关注伊朗战争双重风险，认为通胀放缓可能慢于预期；暗示若通胀高企不排除加息可能</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📈 昨日市场表现</h2>
+            <div class="market-grid">
+                <div class="market-item">
+                    <div class="flag">🇺🇸</div>
+                    <div class="name">道指</div>
+                    <div class="value positive">+7.87%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">🇺🇸</div>
+                    <div class="name">纳指</div>
+                    <div class="value positive">+12.16%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">🇺🇸</div>
+                    <div class="name">标普500</div>
+                    <div class="value positive">+9.52%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">🇭🇰</div>
+                    <div class="name">恒生指数</div>
+                    <div class="value negative">-0.54%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">🇨🇳</div>
+                    <div class="name">沪指</div>
+                    <div class="value positive">+1.31%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">🇨🇳</div>
+                    <div class="name">创业板指</div>
+                    <div class="value positive">+0.98%</div>
+                </div>
+                <div class="market-item">
+                    <div class="flag">₿</div>
+                    <div class="name">比特币</div>
+                    <div class="value">$70,879</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>👀 今日观察重点</h2>
+            <ul class="focus-list">
+                <li><strong>中美关税谈判进展</strong> — 125%对华关税将如何演变，直接影响全球供应链</li>
+                <li><strong>霍尔木兹海峡通航动态</strong> — 美伊谈判进展与油轮通行状况</li>
+                <li><strong>美联储官员讲话</strong> — 最新利率政策指引信号</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>报告生成时间：2026-04-10 08:50 CST</p>
+            <p class="warning">⚠️ 以上分析仅供参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>
