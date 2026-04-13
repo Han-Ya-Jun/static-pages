@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026年4月13日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e8e8e8;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.8), rgba(15, 52, 96, 0.8));
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header .date {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .card h2 {
+            color: #e94560;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.5);
+        }
+        .event {
+            background: rgba(233, 69, 96, 0.1);
+            border-left: 4px solid #e94560;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 10px 10px 0;
+        }
+        .event h3 {
+            color: #ffd700;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        .event p {
+            line-height: 1.6;
+            color: #ccc;
+        }
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .market-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .market-item .label {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .market-item .value {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .market-item .value.up {
+            color: #00d9a5;
+        }
+        .market-item .value.down {
+            color: #e94560;
+        }
+        .focus-list {
+            list-style: none;
+        }
+        .focus-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+        .focus-list li::before {
+            content: "📌";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .focus-list li:last-child {
+            border-bottom: none;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.9em;
+        }
+        .footer .warning {
+            color: #e94560;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            margin-left: 10px;
+        }
+        .badge-hot {
+            background: #e94560;
+            color: white;
+        }
+        .badge-up {
+            background: #00d9a5;
+            color: #1a1a2e;
+        }
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="date">2026年4月13日 星期一</div>
+        </div>
+
+        <div class="card">
+            <h2>🔥 全球财经大事件</h2>
+            
+            <div class="event">
+                <h3>中美关税战升级 <span class="badge badge-hot">HOT</span></h3>
+                <p>美国对华关税提升至145%，中国宣布对美所有进口商品加征<span class="highlight">125%关税</span>作为反制。部分中国制造商已明确向美国客户表示不会降价保订单，部分商品或将退出美国市场。</p>
+            </div>
+            
+            <div class="event">
+                <h3>黄金价格创历史新高 <span class="badge badge-up">+6%</span></h3>
+                <p>受关税风波和避险情绪推动，金价于4月11日突破每盎司<span class="highlight">3244美元</span>，创历史新高，单周涨幅超6%。全球经济衰退担忧促使投资者追捧黄金避险。</p>
+            </div>
+            
+            <div class="event">
+                <h3>中央汇金维稳A股</h3>
+                <p>中央汇金首次官宣发挥<span class="highlight">"类平准基金"</span>作用，在A股剧烈波动时大举增持ETF，推动沪指站稳3200点。市场热议万亿平准基金加速推出。</p>
+            </div>
+            
+            <div class="event">
+                <h3>美元指数跌破100关口</h3>
+                <p>美国"对等关税"政策引发美元信用危机，美元指数4月11日<span class="highlight">跌破100关口</span>，创2023年7月以来新低。全球资金转向日元、瑞郎等避险货币。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📈 昨日市场表现</h2>
+            
+            <h3 style="color: #4a9eff; margin: 20px 0 10px;">🇺🇸 美股 (4月10日)</h3>
+            <div class="market-grid">
+                <div class="market-item">
+                    <div class="label">道琼斯</div>
+                    <div class="value down">-0.56%</div>
+                </div>
+                <div class="market-item">
+                    <div class="label">纳斯达克</div>
+                    <div class="value up">+0.35%</div>
+                </div>
+                <div class="market-item">
+                    <div class="label">标普500</div>
+                    <div class="value down">-0.11%</div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; color: #888; font-size: 0.9em;">📊 本周表现：三大股指涨幅均超3%，标普500创11月以来最佳单周表现</p>
+            
+            <h3 style="color: #ff6b6b; margin: 25px 0 10px;">🇭🇰 港股 (4月10日)</h3>
+            <div class="market-grid">
+                <div class="market-item">
+                    <div class="label">恒生指数</div>
+                    <div class="value up">+0.55%</div>
+                </div>
+                <div class="market-item">
+                    <div class="label">恒生科技</div>
+                    <div class="value up">+0.73%</div>
+                </div>
+            </div>
+            
+            <h3 style="color: #00d9a5; margin: 25px 0 10px;">🇨🇳 A股 (4月11日)</h3>
+            <div class="market-grid">
+                <div class="market-item">
+                    <div class="label">上证指数</div>
+                    <div class="value up">+0.45%</div>
+                </div>
+                <div class="market-item">
+                    <div class="label">深证成指</div>
+                    <div class="value up">+0.82%</div>
+                </div>
+                <div class="market-item">
+                    <div class="label">创业板指</div>
+                    <div class="value up">+1.36%</div>
+                </div>
+                <div class="market-item">
+                    <div class="label">科创50</div>
+                    <div class="value up">+2.07%</div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; color: #888; font-size: 0.9em;">💰 南向资金净流入116.94亿港元</p>
+            
+            <h3 style="color: #ffd700; margin: 25px 0 10px;">₿ 加密货币</h3>
+            <div class="market-grid">
+                <div class="market-item">
+                    <div class="label">比特币 BTC</div>
+                    <div class="value up">~$72,000</div>
+                </div>
+                <div class="market-item">
+                    <div class="label">周涨幅</div>
+                    <div class="value up">+4%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>👀 今日观察重点</h2>
+            <ul class="focus-list">
+                <li><strong>美伊停火协议进展</strong> — 停火协议脆弱，若破裂可能引发原油和黄金市场剧烈波动</li>
+                <li><strong>中美关税战最新动态</strong> — 关注贸易数据变化，以及欧盟对美关税反制措施</li>
+                <li><strong>A股平准基金政策动向</strong> — 正式平准基金推出将显著提振市场信心</li>
+                <li><strong>黄金价格能否持续突破</strong> — 避险情绪推动金价创新高，关注机构资金配置动向</li>
+                <li><strong>美股一季度财报季</strong> — 关注Mag7财报表现及科技股目标价调整</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🎯 今日关注方向</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                <span style="background: rgba(0,217,165,0.2); color: #00d9a5; padding: 8px 16px; border-radius: 20px; font-size: 0.9em;">半导体/芯片国产替代</span>
+                <span style="background: rgba(255,215,0,0.2); color: #ffd700; padding: 8px 16px; border-radius: 20px; font-size: 0.9em;">黄金避险资产</span>
+                <span style="background: rgba(233,69,96,0.2); color: #e94560; padding: 8px 16px; border-radius: 20px; font-size: 0.9em;">券商业绩受益</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>报告生成时间：2026年4月13日 08:50</p>
+            <p class="warning">⚠️ 以上分析仅供参考，不构成投资建议</p>
+            <p style="margin-top: 15px; font-size: 0.8em;">投资有风险，入市需谨慎</p>
+        </div>
+    </div>
+</body>
+</html>
