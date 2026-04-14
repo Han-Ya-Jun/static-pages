@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026年4月14日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .header .date {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+        }
+        .news-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .news-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .news-item h3 {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        .news-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .market-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .market-card:hover {
+            transform: scale(1.03);
+        }
+        .market-card .name {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .market-card .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        .market-card .change {
+            font-size: 0.9em;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .up { color: #e74c3c; }
+        .down { color: #27ae60; }
+        .neutral { color: #95a5a6; }
+        .focus-list {
+            list-style: none;
+        }
+        .focus-list li {
+            background: #f0f4f8;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .focus-list li::before {
+            content: '🔍';
+            font-size: 1.2em;
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        .disclaimer {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-top: 30px;
+            color: #856404;
+        }
+        .disclaimer::before {
+            content: '⚠️ ';
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8em; }
+            .content { padding: 20px; }
+            .market-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="date">2026年4月14日 星期二</div>
+        </header>
+        
+        <main class="content">
+            <!-- 全球财经大事件 -->
+            <section class="section">
+                <h2 class="section-title">全球财经大事件</h2>
+                
+                <div class="news-item">
+                    <h3>🚀 纳斯达克指数八连涨创年内新高</h3>
+                    <p>芯片股强劲带动美股科技股持续走强，英伟达领涨半导体板块，反映AI产业链景气度持续上行，市场对科技成长股的信心正在恢复。</p>
+                </div>
+                
+                <div class="news-item">
+                    <h3>🛢️ 霍尔木兹海峡风险再起引发油价波动</h3>
+                    <p>地缘政治紧张局势升温，美股开盘后曾集体低开，但随后深V拉升显示市场韧性。能源板块短期承压，但科技股和成长股抗跌性较强。</p>
+                </div>
+                
+                <div class="news-item">
+                    <h3>₿ 加密货币市场持续反弹</h3>
+                    <p>比特币突破73,000美元关口，24小时涨幅超1.4%，市值达1.46万亿美元。机构资金持续流入加密资产，避险情绪与投机需求并存。</p>
+                </div>
+            </section>
+            
+            <!-- 昨日市场表现 -->
+            <section class="section">
+                <h2 class="section-title">昨日市场表现</h2>
+                <div class="market-grid">
+                    <div class="market-card">
+                        <div class="name">🇺🇸 道琼斯</div>
+                        <div class="value">47,673</div>
+                        <div class="change down">-0.52%</div>
+                    </div>
+                    <div class="market-card">
+                        <div class="name">🇺🇸 纳斯达克</div>
+                        <div class="value">21,996</div>
+                        <div class="change up">+0.23%</div>
+                    </div>
+                    <div class="market-card">
+                        <div class="name">🇺🇸 标普500</div>
+                        <div class="value">6,742</div>
+                        <div class="change neutral">平盘</div>
+                    </div>
+                    <div class="market-card">
+                        <div class="name">₿ 比特币</div>
+                        <div class="value">$73,015</div>
+                        <div class="change up">+1.42%</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 今日观察重点 -->
+            <section class="section">
+                <h2 class="section-title">今日观察重点</h2>
+                <ul class="focus-list">
+                    <li>
+                        <strong>科技股动能能否延续</strong> — 纳指八连涨后短线是否存在回调风险，关注成交量变化
+                    </li>
+                    <li>
+                        <strong>芯片板块轮动</strong> — 英伟达领涨后，关注其他半导体标的补涨机会，以及AI产业链扩散效应
+                    </li>
+                    <li>
+                        <strong>加密货币持续性</strong> — BTC突破7.3万后，观察能否站稳并带动相关概念股
+                    </li>
+                </ul>
+            </section>
+            
+            <!-- 投资观察建议 -->
+            <section class="section">
+                <h2 class="section-title">投资观察建议</h2>
+                <div class="news-item">
+                    <h3>🇺🇸 美股</h3>
+                    <p>科技股连续上涨后需警惕短期获利回吐，但中期趋势向好。建议关注业绩确定性强的AI龙头，以及估值修复空间的成长股。</p>
+                </div>
+                <div class="news-item">
+                    <h3>🇭🇰 港股</h3>
+                    <p>关注南向资金流向及中概股情绪修复。科技股跟随美股反弹，地产链仍需观察政策面变化。</p>
+                </div>
+                <div class="news-item">
+                    <h3>🇨🇳 A股</h3>
+                    <p>关注AI算力、半导体等科技板块催化剂，以及新能源产业链政策利好。指数震荡期间建议控制仓位。</p>
+                </div>
+                <div class="news-item">
+                    <h3>₿ 数字货币</h3>
+                    <p>BTC突破关键阻力位，但波动较大。建议关注机构持仓变化及宏观流动性环境，控制杠杆风险。</p>
+                </div>
+            </section>
+            
+            <div class="disclaimer">
+                以上分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>报告生成时间：2026-04-14 08:50 | 数据来源：公开市场信息</p>
+            <p>🦊 hanbot 财经助手</p>
+        </footer>
+    </div>
+</body>
+</html>
