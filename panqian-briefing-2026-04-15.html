@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026年4月15日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .date {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .header .time {
+            font-size: 0.9em;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+        
+        .section {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .section h2 {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,215,0,0.3);
+        }
+        
+        .event {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .event.yellow { border-left-color: #feca57; }
+        .event.green { border-left-color: #48dbfb; }
+        .event.orange { border-left-color: #ff9ff3; }
+        
+        .event h3 {
+            color: #fff;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .event p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95em;
+            margin-bottom: 8px;
+        }
+        
+        .event .meta {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85em;
+        }
+        
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .market-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .market-card .flag {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .market-card h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .market-card .data {
+            font-size: 1.1em;
+            margin: 8px 0;
+        }
+        
+        .market-card .change-up {
+            color: #26de81;
+        }
+        
+        .market-card .change-down {
+            color: #ff6b6b;
+        }
+        
+        .watch-list {
+            list-style: none;
+        }
+        
+        .watch-list li {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .watch-list li::before {
+            content: "👉";
+            font-size: 1.2em;
+        }
+        
+        .todo-list {
+            list-style: none;
+        }
+        
+        .todo-list li {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+        }
+        
+        .todo-list li strong {
+            color: #ffd700;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .stock-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .stock-card .market-tag {
+            display: inline-block;
+            background: #667eea;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+        
+        .stock-card h4 {
+            color: #ffd700;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .stock-card .logic {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .stock-card .levels {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+        
+        .stock-card .risk {
+            color: #ff6b6b;
+            font-size: 0.85em;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9em;
+        }
+        
+        .disclaimer {
+            background: rgba(255,107,107,0.1);
+            border: 1px solid rgba(255,107,107,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .disclaimer p {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="date">2026年4月15日 星期三</div>
+            <div class="time">生成时间：08:50 CST</div>
+        </div>
+        
+        <div class="section">
+            <h2>🌍 全球财经大事件</h2>
+            
+            <div class="event">
+                <h3>🔴 美伊第二轮谈判有望本周举行</h3>
+                <p>巴基斯坦外交部确认已邀请美国和伊朗进行第二轮面对面谈判，有望于4月16日在伊斯兰堡举行</p>
+                <p class="meta">📍 全球/中东 | 地缘风险降温信号提振全球风险资产，标普500已完全收复战争跌幅</p>
+            </div>
+            
+            <div class="event yellow">
+                <h3>🟡 标普500完全收复美伊冲突跌幅</h3>
+                <p>美股周一强势反弹，标普500指数抹平伊朗战争爆发以来全部跌幅，科技股领涨</p>
+                <p class="meta">📍 美股 | 市场情绪显著回暖，但需警惕乐观情绪与地缘现实的背离风险</p>
+            </div>
+            
+            <div class="event green">
+                <h3>🟢 摩根大通等银行股财报公布</h3>
+                <p>摩根大通Q1营收505亿美元超预期，花旗净利润58亿美元同比增42%，但下调净利息收入指引</p>
+                <p class="meta">📍 美股金融板块 | 业绩分化反映高利率影响，市场关注美联储政策预期</p>
+            </div>
+            
+            <div class="event orange">
+                <h3>🟠 中国3月金融数据公布</h3>
+                <p>3月社融增量5.23万亿元，新增人民币贷款2.99万亿元，流动性宽松预期支撑A股反弹</p>
+                <p class="meta">📍 A股/中国 | 沪指收复4000点大关，沪深两市成交2.38万亿元</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📈 昨日市场表现</h2>
+            <div class="market-grid">
+                <div class="market-card">
+                    <div class="flag">🇺🇸</div>
+                    <h3>美股</h3>
+                    <div class="data">标普500 <span class="change-up">+1.02%</span></div>
+                    <div class="data">纳指 <span class="change-up">+1.23%</span></div>
+                    <div class="data">道指 <span class="change-up">+0.63%</span></div>
+                    <div style="font-size:0.85em;color:rgba(255,255,255,0.6);margin-top:8px;">收复本轮冲突全部跌幅</div>
+                </div>
+                
+                <div class="market-card">
+                    <div class="flag">🇭🇰</div>
+                    <h3>港股</h3>
+                    <div class="data">恒指 <span class="change-up">+0.82%</span></div>
+                    <div class="data">恒生科技 <span class="change-up">+0.62%</span></div>
+                    <div class="data">成交 2368亿港元</div>
+                    <div style="font-size:0.85em;color:rgba(255,255,255,0.6);margin-top:8px;">科网股普涨，泡泡玛特涨超6%</div>
+                </div>
+                
+                <div class="market-card">
+                    <div class="flag">🇨🇳</div>
+                    <h3>A股</h3>
+                    <div class="data">沪指 <span class="change-up">+0.95%</span></div>
+                    <div class="data">深成指 <span class="change-up">+1.61%</span></div>
+                    <div class="data">创业板 <span class="change-up">+2.36%</span></div>
+                    <div style="font-size:0.85em;color:rgba(255,255,255,0.6);margin-top:8px;">收复4000点，成交2.38万亿</div>
+                </div>
+                
+                <div class="market-card">
+                    <div class="flag">₿</div>
+                    <h3>加密货币</h3>
+                    <div class="data">BTC <span class="change-up">$74,442 +5.2%</span></div>
+                    <div class="data">ETH <span class="change-up">$2,370 +8.1%</span></div>
+                    <div style="font-size:0.85em;color:rgba(255,255,255,0.6);margin-top:8px;">ETH表现优于BTC，ETF资金轮动</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>👀 今日观察重点</h2>
+            <ul class="watch-list">
+                <li>关注美伊第二轮谈判进展——若释放缓和信号，油价或进一步回落，利好全球风险资产</li>
+                <li>科技股财报季开启——关注甲骨文、微软等AI/云计算板块业绩，判断科技股反弹持续性</li>
+                <li>中国3月金融数据影响——社融数据超预期，关注A股流动性宽松预期能否延续</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>✅ 今日待办事项</h2>
+            <ul class="todo-list">
+                <li>
+                    <strong>监控美伊第二轮谈判动态</strong>
+                    若释放缓和信号，将利好全球风险资产，油价可能回落；若谈判破裂需警惕市场回调
+                </li>
+                <li>
+                    <strong>关注科技股财报表现</strong>
+                    甲骨文、微软等业绩将决定AI板块反弹持续性，影响纳指走势
+                </li>
+                <li>
+                    <strong>跟踪中国央行MLF操作</strong>
+                    社融数据超预期后，关注货币政策边际变化对A股流动性的影响
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 今日标的推荐</h2>
+            <p style="margin-bottom:20px;color:rgba(255,255,255,0.8);">关注方向：1) 科技成长（AI/半导体） 2) 地缘缓和受益板块</p>
+            
+            <div class="stock-grid">
+                <div class="stock-card">
+                    <span class="market-tag">A股</span>
+                    <h4>宁德时代 (300750.SZ)</h4>
+                    <p class="logic">锂电池板块活跃 + 一季度业绩预期 + 技术面沿5日均线上攻</p>
+                    <p class="risk">⚠️ 原材料价格波动、海外政策风险</p>
+                </div>
+                
+                <div class="stock-card">
+                    <span class="market-tag">A股</span>
+                    <h4>中芯国际 (688981.SH)</h4>
+                    <p class="logic">半导体板块催化剂不断 + 国产替代逻辑 + 港股中芯国际涨1.4%传导</p>
+                    <p class="risk">⚠️ 行业周期波动、制裁风险</p>
+                </div>
+                
+                <div class="stock-card">
+                    <span class="market-tag">港股</span>
+                    <h4>腾讯控股 (0700.HK)</h4>
+                    <p class="logic">科网龙头 + 游戏业务稳健 + AI应用布局</p>
+                    <p class="levels">支撑：HK$480 | 阻力：HK$510</p>
+                    <p class="risk">⚠️ 监管政策、游戏版号审批</p>
+                </div>
+                
+                <div class="stock-card">
+                    <span class="market-tag">港股</span>
+                    <h4>泡泡玛特 (9992.HK)</h4>
+                    <p class="logic">消费复苏受益 + IP运营能力 + 昨日涨超6% momentum</p>
+                    <p class="risk">⚠️ 消费不及预期、IP热度下滑</p>
+                </div>
+                
+                <div class="stock-card">
+                    <span class="market-tag">美股</span>
+                    <h4>甲骨文 (ORCL.US)</h4>
+                    <p class="logic">AI云服务需求强劲 + 昨日涨超12% + 财报超预期</p>
+                    <p class="risk">⚠️ 估值偏高、竞争加剧</p>
+                </div>
+                
+                <div class="stock-card">
+                    <span class="market-tag">美股</span>
+                    <h4>英伟达 (NVDA.US)</h4>
+                    <p class="logic">AI芯片龙头 + 算力需求持续 + 技术升级周期</p>
+                    <p class="risk">⚠️ 地缘政治、估值回调</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="disclaimer">
+                <p>⚠️ 以上分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+            </div>
+            <p style="margin-top:20px;">数据来源：新浪财经、雅虎财经、CoinDesk、FX168等</p>
+            <p>报告生成时间：2026-04-15 08:50 CST</p>
+        </div>
+    </div>
+</body>
+</html>
