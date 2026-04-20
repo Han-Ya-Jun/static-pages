@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026年4月20日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .date {
+            font-size: 1.1em;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+        
+        .event-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .event-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+        
+        .event-card.urgent {
+            border-left-color: #f5576c;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+        }
+        
+        .event-card.warning {
+            border-left-color: #feca57;
+            background: linear-gradient(135deg, #fffbf0 0%, #fff5e0 100%);
+        }
+        
+        .event-title {
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .event-desc {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .market-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .market-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .market-name {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+        
+        .market-value {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .market-value.up {
+            color: #28a745;
+        }
+        
+        .market-value.down {
+            color: #dc3545;
+        }
+        
+        .market-value.flat {
+            color: #6c757d;
+        }
+        
+        .todo-list {
+            list-style: none;
+        }
+        
+        .todo-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: background 0.2s;
+        }
+        
+        .todo-item:hover {
+            background: #e9ecef;
+        }
+        
+        .todo-num {
+            background: #667eea;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .todo-content {
+            flex: 1;
+        }
+        
+        .todo-title {
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .todo-reason {
+            color: #6c757d;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .stock-section {
+            margin-bottom: 25px;
+        }
+        
+        .stock-region {
+            font-size: 1.1em;
+            color: #667eea;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .stock-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .stock-name {
+            font-weight: bold;
+            color: #1a1a2e;
+            font-size: 1.1em;
+        }
+        
+        .stock-code {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .stock-logic {
+            color: #495057;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+        }
+        
+        .stock-levels {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        
+        .level-support {
+            color: #28a745;
+        }
+        
+        .level-resist {
+            color: #dc3545;
+        }
+        
+        .stock-risk {
+            color: #856404;
+            background: #fff3cd;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        
+        .footer .disclaimer {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        
+        .footer .time {
+            font-size: 0.85em;
+            opacity: 0.6;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        
+        .tag.red {
+            background: #f5576c;
+        }
+        
+        .tag.yellow {
+            background: #feca57;
+            color: #333;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stock-levels {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="date">2026年4月20日 星期一</div>
+        </div>
+        
+        <div class="content">
+            <!-- 全球财经大事件 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🌍</span>
+                    全球财经大事件
+                </h2>
+                
+                <div class="event-card urgent">
+                    <div class="event-title">
+                        <span class="tag red">重磅</span>
+                        英特尔股价创25年新高，一度触及69.55美元
+                    </div>
+                    <div class="event-desc">
+                        英特尔周五飙升至互联网泡沫时期以来的最高水平，股价一度上涨1.5%至69.55美元。今年以来股价已上涨90%，目前距离2000年8月创下的历史收盘高点仅相差约8%。市场对其振兴计划看法乐观，反映半导体行业周期回暖预期。
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-title">
+                        <span class="tag">港股</span>
+                        港股三大指数集体收涨，科技股领涨
+                    </div>
+                    <div class="event-desc">
+                        4月17日港股表现强劲，恒指涨1.61%至21395点，恒生科技指数涨1.9%。科技、消费、地产板块涨幅居前，显示市场风险偏好回升，外资对港股科技龙头的配置意愿增强。
+                    </div>
+                </div>
+                
+                <div class="event-card warning">
+                    <div class="event-title">
+                        <span class="tag yellow">趋势</span>
+                        科技龙头H股估值反超A股成为新常态
+                    </div>
+                    <div class="event-desc">
+                        长期以来A股相对于H股存在显著的溢价，但自2025年以来这一格局正在改变。科技龙头H股比A股更贵成为新常态，反映外资对港股科技龙头的青睐程度提升。
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 昨日市场表现 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">📈</span>
+                    昨日市场表现
+                </h2>
+                
+                <div class="market-grid">
+                    <div class="market-item">
+                        <div class="market-name">🇺🇸 英特尔</div>
+                        <div class="market-value up">+1.5%</div>
+                        <div style="font-size: 0.85em; color: #6c757d;">$69.55 创新高</div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">🇭🇰 恒生指数</div>
+                        <div class="market-value up">+1.61%</div>
+                        <div style="font-size: 0.85em; color: #6c757d;">21,395点</div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">🇭🇰 恒生科技</div>
+                        <div class="market-value up">+1.9%</div>
+                        <div style="font-size: 0.85em; color: #6c757d;">4,887点</div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">🇨🇳 上证指数</div>
+                        <div class="market-value down">-0.11%</div>
+                        <div style="font-size: 0.85em; color: #6c757d;">3,276点</div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">🇨🇳 深证成指</div>
+                        <div class="market-value up">+0.23%</div>
+                        <div style="font-size: 0.85em; color: #6c757d;">9,781点</div>
+                    </div>
+                    <div class="market-item">
+                        <div class="market-name">🇨🇳 创业板指</div>
+                        <div class="market-value up">+0.27%</div>
+                        <div style="font-size: 0.85em; color: #6c757d;">1,913点</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; font-size: 0.95em; color: #495057;">
+                    <strong>市场要点：</strong>A股沪指结束8连阳进入技术性调整，但深成指和创业板指延续涨势；港股科技股领涨；美股英特尔创25年新高带动半导体板块情绪。
+                </div>
+            </div>
+            
+            <!-- 今日观察重点 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">👀</span>
+                    今日观察重点
+                </h2>
+                
+                <ul class="todo-list">
+                    <li class="todo-item">
+                        <span class="todo-num">1</span>
+                        <div class="todo-content">
+                            <div class="todo-title">关注美股科技股分化走势</div>
+                            <div class="todo-reason">英特尔领涨但需观察其他科技巨头是否跟进，尤其是AI相关标的，关注NVDA、AMD等同业标的走势</div>
+                        </div>
+                    </li>
+                    <li class="todo-item">
+                        <span class="todo-num">2</span>
+                        <div class="todo-content">
+                            <div class="todo-title">跟踪港股科技股资金流向</div>
+                            <div class="todo-reason">港股科技板块已连续反弹，观察南向资金和外资的持续性能判断反弹质量</div>
+                        </div>
+                    </li>
+                    <li class="todo-item">
+                        <span class="todo-num">3</span>
+                        <div class="todo-content">
+                            <div class="todo-title">监控A股沪指3250点支撑</div>
+                            <div class="todo-reason">沪指结束8连阳进入调整，3250-3300点区间是重要支撑区域，决定短期调整深度</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 今日标的推荐 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🎯</span>
+                    今日标的推荐
+                </h2>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;">
+                    <strong>今日关注方向：</strong>1) 半导体/芯片板块（英特尔创新高带动） 2) 港股科技龙头（南向资金持续流入）
+                </div>
+                
+                <!-- A股 -->
+                <div class="stock-section">
+                    <div class="stock-region">🇨🇳 A股</div>
+                    
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <span class="stock-name">宁德时代 <span class="stock-code">300750.SZ</span></span>
+                        </div>
+                        <div class="stock-logic">
+                            <strong>逻辑：</strong>新能源龙头+业绩确定性，受益AI算力对储能需求增长
+                        </div>
+                        <div class="stock-levels">
+                            <span class="level-support">📈 支撑：¥185</span>
+                            <span class="level-resist">📉 阻力：¥205</span>
+                        </div>
+                        <div class="stock-risk">⚠️ 风险：新能源车销量增速放缓</div>
+                    </div>
+                    
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <span class="stock-name">中芯国际 <span class="stock-code">688981.SH</span></span>
+                        </div>
+                        <div class="stock-logic">
+                            <strong>逻辑：</strong>半导体国产替代龙头，英特尔创新高带动板块情绪
+                        </div>
+                        <div class="stock-levels">
+                            <span class="level-support">📈 支撑：¥48</span>
+                            <span class="level-resist">📉 阻力：¥55</span>
+                        </div>
+                        <div class="stock-risk">⚠️ 风险：产能爬坡不及预期、美国制裁风险</div>
+                    </div>
+                </div>
+                
+                <!-- 港股 -->
+                <div class="stock-section">
+                    <div class="stock-region">🇭🇰 港股</div>
+                    
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <span class="stock-name">腾讯控股 <span class="stock-code">700.HK</span></span>
+                        </div>
+                        <div class="stock-logic">
+                            <strong>逻辑：</strong>港股科技龙头，游戏+AI双轮驱动，南向资金持续流入
+                        </div>
+                        <div class="stock-levels">
+                            <span class="level-support">📈 支撑：HK$420</span>
+                            <span class="level-resist">📉 阻力：HK$460</span>
+                        </div>
+                        <div class="stock-risk">⚠️ 风险：监管政策变化、游戏行业竞争加剧</div>
+                    </div>
+                    
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <span class="stock-name">美团 <span class="stock-code">3690.HK</span></span>
+                        </div>
+                        <div class="stock-logic">
+                            <strong>逻辑：</strong>本地生活龙头，受益消费复苏，科技股反弹弹性标的
+                        </div>
+                        <div class="stock-levels">
+                            <span class="level-support">📈 支撑：HK$130</span>
+                            <span class="level-resist">📉 阻力：HK$155</span>
+                        </div>
+                        <div class="stock-risk">⚠️ 风险：竞争加剧、利润率下滑</div>
+                    </div>
+                </div>
+                
+                <!-- 美股 -->
+                <div class="stock-section">
+                    <div class="stock-region">🇺🇸 美股</div>
+                    
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <span class="stock-name">英伟达 <span class="stock-code">NVDA.US</span></span>
+                        </div>
+                        <div class="stock-logic">
+                            <strong>逻辑：</strong>AI芯片绝对龙头，英特尔创新高带动半导体板块情绪
+                        </div>
+                        <div class="stock-levels">
+                            <span class="level-support">📈 支撑：$115</span>
+                            <span class="level-resist">📉 阻力：$135</span>
+                        </div>
+                        <div class="stock-risk">⚠️ 风险：估值偏高、AI需求不及预期</div>
+                    </div>
+                    
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <span class="stock-name">台积电 <span class="stock-code">TSM.US</span></span>
+                        </div>
+                        <div class="stock-logic">
+                            <strong>逻辑：</strong>全球晶圆代工龙头，受益AI芯片需求爆发
+                        </div>
+                        <div class="stock-levels">
+                            <span class="level-support">📈 支撑：$155</span>
+                            <span class="level-resist">📉 阻力：$175</span>
+                        </div>
+                        <div class="stock-risk">⚠️ 风险：地缘政治风险、汇率波动</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="disclaimer">⚠️ 以上分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。</div>
+            <div class="time">报告生成时间：2026-04-20 08:50 | hanbot 盘前助手</div>
+        </div>
+    </div>
+</body>
+</html>
