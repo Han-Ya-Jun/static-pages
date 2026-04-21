@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026年4月21日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(255,107,107,0.2) 0%, rgba(78,205,196,0.2) 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .date {
+            color: #8892b0;
+            font-size: 1.1em;
+        }
+        
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .section h2 {
+            color: #4ecdc4;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(78,205,196,0.3);
+        }
+        
+        .event-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+        
+        .event-item:hover {
+            transform: translateX(5px);
+            background: rgba(255,255,255,0.07);
+        }
+        
+        .event-item h3 {
+            color: #ff6b6b;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .event-item p {
+            color: #ccd6f6;
+            font-size: 0.95em;
+        }
+        
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .market-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .market-card h3 {
+            color: #4ecdc4;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .market-card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .market-card td {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: #ccd6f6;
+        }
+        
+        .market-card td:last-child {
+            text-align: right;
+            font-weight: 600;
+        }
+        
+        .up { color: #4ecdc4; }
+        .down { color: #ff6b6b; }
+        .flat { color: #8892b0; }
+        
+        .highlight-list {
+            list-style: none;
+        }
+        
+        .highlight-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .highlight-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .highlight-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+        
+        .highlight-content h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .highlight-content p {
+            color: #8892b0;
+            font-size: 0.9em;
+        }
+        
+        .disclaimer {
+            background: rgba(255,193,7,0.1);
+            border: 1px solid rgba(255,193,7,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #ffc107;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #8892b0;
+            font-size: 0.85em;
+        }
+        
+        .footer .brand {
+            color: #4ecdc4;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📊 盘前简报</h1>
+            <div class="date">2026年4月21日 | 生成时间 08:50 (北京时间)</div>
+        </header>
+
+        <section class="section">
+            <h2>🌍 全球财经大事件</h2>
+            
+            <div class="event-item">
+                <h3>IMF下调全球增长预期 ⬇️</h3>
+                <p>国际货币基金组织(IMF)发布4月《世界经济展望》，将2026年全球GDP增长预期下调0.5个百分点至<strong>2.4%</strong>。中东战争、持续通胀和贸易不确定性是主要下行风险。</p>
+            </div>
+            
+            <div class="event-item">
+                <h3>美联储维持利率不变 🏦</h3>
+                <p>美联储4月议息会议维持利率不变，市场降息预期进一步推迟至下半年。鲍威尔表示将继续关注通胀和就业数据。</p>
+            </div>
+            
+            <div class="event-item">
+                <h3>中东局势持续紧张 ⚠️</h3>
+                <p>霍尔木兹海峡局势仍存不确定性，布伦特原油价格重回<strong>95美元/桶</strong>上方。地缘政治风险溢价上升，能源板块波动加大。</p>
+            </div>
+            
+            <div class="event-item">
+                <h3>中国航天任务密集实施 🚀</h3>
+                <p>国家航天局宣布2026年航天任务密集实施，天问二号将接近目标小行星。4月24日"中国航天日"将在成都举办。</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>📈 昨日市场表现</h2>
+            <div class="market-grid">
+                <div class="market-card">
+                    <h3>🇺🇸 美股</h3>
+                    <table>
+                        <tr><td>道琼斯</td><td class="flat">49,442 (-0.01%)</td></tr>
+                        <tr><td>纳斯达克</td><td class="down">24,404 (-0.26%)</td></tr>
+                        <tr><td>标普500</td><td class="down">7,109 (-0.24%)</td></tr>
+                        <tr><td>罗素2000</td><td class="up">2,793 (+0.6%)</td></tr>
+                    </table>
+                </div>
+                
+                <div class="market-card">
+                    <h3>🇭🇰 港股</h3>
+                    <table>
+                        <tr><td>恒生指数</td><td class="up">+0.77%</td></tr>
+                        <tr><td>恒生科技</td><td class="up">+0.46%</td></tr>
+                        <tr><td>恒生国企</td><td class="up">+0.61%</td></tr>
+                        <tr><td>成交额</td><td>2415亿港元</td></tr>
+                    </table>
+                </div>
+                
+                <div class="market-card">
+                    <h3>🇨🇳 A股</h3>
+                    <table>
+                        <tr><td>上证指数</td><td class="up">4,082 (+0.76%)</td></tr>
+                        <tr><td>深证成指</td><td class="up">14,967 (+0.55%)</td></tr>
+                        <tr><td>创业板指</td><td class="down">3,678 (-0.02%)</td></tr>
+                        <tr><td>成交额</td><td>2.61万亿元</td></tr>
+                    </table>
+                </div>
+                
+                <div class="market-card">
+                    <h3>₿ 加密货币</h3>
+                    <table>
+                        <tr><td>BTC</td><td>~$86,000</td></tr>
+                        <tr><td>ETH</td><td>~$1,600</td></tr>
+                        <tr><td colspan="2" style="color:#8892b0;font-size:0.85em;">受地缘政治影响波动加大</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🔍 今日观察重点</h2>
+            <ul class="highlight-list">
+                <li>
+                    <span class="highlight-icon">🛢️</span>
+                    <div class="highlight-content">
+                        <h4>中东局势演变</h4>
+                        <p>关注美伊谈判进展、霍尔木兹海峡安全及油价对通胀预期的影响</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="highlight-icon">💻</span>
+                    <div class="highlight-content">
+                        <h4>美股财报季</h4>
+                        <p>多家科技股发布财报，业绩指引对纳指走势的影响值得关注</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="highlight-icon">🚀</span>
+                    <div class="highlight-content">
+                        <h4>A股商业航天概念</h4>
+                        <p>中国航天日临近(4月24日)，板块热度能否延续，注意追高风险</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="highlight-icon">💰</span>
+                    <div class="highlight-content">
+                        <h4>港股资金流向</h4>
+                        <p>南向资金连续净流出，关注高股息板块的配置价值</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="highlight-icon">🏦</span>
+                    <div class="highlight-content">
+                        <h4>美联储官员讲话</h4>
+                        <p>多位官员将公开发言，关注对利率前景的表态及市场降息预期变化</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <div class="disclaimer">
+            ⚠️ 以上分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+        </div>
+
+        <footer class="footer">
+            <p>报告生成：<span class="brand">hanbot 财经分析助手</span></p>
+            <p>数据来源：公开市场数据</p>
+        </footer>
+    </div>
+</body>
+</html>
