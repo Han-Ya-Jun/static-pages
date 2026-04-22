@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘前简报 | 2026年4月22日</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --text: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --success: #00d9a3;
+            --danger: #ff4757;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, #e94560);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .meta {
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+        
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .section h2 {
+            color: var(--highlight);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--highlight);
+        }
+        
+        .section h3 {
+            color: #fff;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+        
+        .news-item {
+            background: rgba(255,255,255,0.03);
+            border-left: 4px solid var(--highlight);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .news-item h4 {
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .news-item p {
+            color: var(--text-muted);
+            font-size: 0.95em;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--highlight);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 8px;
+        }
+        
+        .tag.blue {
+            background: #3498db;
+        }
+        
+        .tag.green {
+            background: var(--success);
+        }
+        
+        .tag.red {
+            background: var(--danger);
+        }
+        
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .market-card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .market-card h4 {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .market-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        
+        .market-card .change {
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+        
+        .positive { color: var(--danger); }
+        .negative { color: var(--success); }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        th {
+            background: rgba(255,255,255,0.05);
+            color: var(--highlight);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .watch-list {
+            list-style: none;
+        }
+        
+        .watch-list li {
+            background: rgba(255,255,255,0.03);
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .watch-list li::before {
+            content: attr(data-num);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .watch-list li strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .watch-list li span {
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+        
+        .disclaimer {
+            background: rgba(233, 69, 96, 0.1);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        
+        .disclaimer h3 {
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+        
+        .disclaimer ul {
+            margin-left: 20px;
+            color: var(--text-muted);
+        }
+        
+        .disclaimer li {
+            margin-bottom: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-muted);
+            font-size: 0.9em;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 30px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.2), rgba(15, 52, 96, 0.3));
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+        
+        .highlight-box h4 {
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🦊</div>
+            <h1>盘前简报 | 2026年4月22日</h1>
+            <p class="meta">报告时间：08:50 (北京时间) | hanbot 财经助手</p>
+        </header>
+
+        <div class="section">
+            <h2>📰 全球财经大事件</h2>
+            
+            <div class="news-item">
+                <h4>🎯 特朗普炮轰鲍威尔引发市场恐慌</h4>
+                <p>特朗普再度施压美联储，称鲍威尔为"大输家""太迟先生"，要求其立即降息，否则经济将放缓。特朗普威胁解雇鲍威尔，加剧市场对美联储独立性的担忧，引发股债汇三杀。</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>🥇 黄金价格再创历史新高</h4>
+                <p>避险情绪升温，COMEX黄金期货大涨3.17%，报3433.50美元/盎司突破3400美元关口，美元指数跌0.88%创三年新低，美元资产遭加速抛售。</p>
+            </div>
+            
+            <div class="news-item">
+                <h4>🌍 IMF-世行春季会议召开</h4>
+                <p>2025年世行和IMF春季会议举行，全球财经领导人齐聚华盛顿，关注贸易紧张局势及全球经济前景。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 昨日市场表现</h2>
+            
+            <h3>美股（4月21日）</h3>
+            <div class="market-grid">
+                <div class="market-card">
+                    <h4>道琼斯</h4>
+                    <div class="value">38,170</div>
+                    <div class="change positive">▼ -2.48%</div>
+                </div>
+                <div class="market-card">
+                    <h4>纳斯达克</h4>
+                    <div class="value">15,870</div>
+                    <div class="change positive">▼ -2.55%</div>
+                </div>
+                <div class="market-card">
+                    <h4>标普500</h4>
+                    <div class="value">5,158</div>
+                    <div class="change positive">▼ -2.36%</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>🔥 关键数据</h4>
+                <p>美股"七巨头"市值合计蒸发 <strong>4046亿美元</strong>（约2.95万亿元人民币）</p>
+                <p style="margin-top:10px;">特斯拉 <span class="tag red">-5.75%</span> | 英伟达 <span class="tag red">-4.51%</span> | 联合健康 <span class="tag red">-6.38%</span></p>
+            </div>
+            
+            <h3>港股（4月21日）</h3>
+            <div class="market-grid">
+                <div class="market-card">
+                    <h4>恒生指数</h4>
+                    <div class="value">26,487</div>
+                    <div class="change negative">▲ +0.48%</div>
+                </div>
+                <div class="market-card">
+                    <h4>恒生科技</h4>
+                    <div class="value">5,061</div>
+                    <div class="change positive">▼ -0.08%</div>
+                </div>
+                <div class="market-card">
+                    <h4>国企指数</h4>
+                    <div class="value">8,943</div>
+                    <div class="change negative">▲ +0.50%</div>
+                </div>
+            </div>
+            
+            <p style="color: var(--text-muted); margin-top: 15px;">
+                <span class="tag green">亮点</span> 南向资金净流入超37亿港元 | 胜宏科技上市首日涨超50%
+            </p>
+            
+            <h3>A股（4月21日）</h3>
+            <div class="market-grid">
+                <div class="market-card">
+                    <h4>上证指数</h4>
+                    <div class="value">4,085</div>
+                    <div class="change negative">▲ +0.07%</div>
+                </div>
+                <div class="market-card">
+                    <h4>深证成指</h4>
+                    <div class="value">14,982</div>
+                    <div class="change negative">▲ +0.10%</div>
+                </div>
+                <div class="market-card">
+                    <h4>创业板指</h4>
+                    <div class="value">3,688</div>
+                    <div class="change negative">▲ +0.31%</div>
+                </div>
+            </div>
+            
+            <p style="color: var(--text-muted); margin-top: 15px;">
+                <span class="tag blue">成交</span> 2.43万亿元 | <span class="tag">涨跌</span> 1946涨 vs 3194跌
+            </p>
+            
+            <h3>大宗商品</h3>
+            <table>
+                <tr>
+                    <th>品种</th>
+                    <th>价格</th>
+                    <th>涨跌</th>
+                </tr>
+                <tr>
+                    <td>COMEX黄金</td>
+                    <td>$3,433.50/盎司</td>
+                    <td class="negative">▲ +3.17%</td>
+                </tr>
+                <tr>
+                    <td>WTI原油</td>
+                    <td>$63.08/桶</td>
+                    <td class="positive">▼ -2.47%</td>
+                </tr>
+                <tr>
+                    <td>比特币</td>
+                    <td>~$87,000</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>👀 今日观察重点</h2>
+            <ul class="watch-list">
+                <li data-num="1">
+                    <strong>美联储政策动向</strong>
+                    <span>关注美联储官员讲话及市场对降息预期变化，特朗普与美联储的博弈将主导短期市场情绪</span>
+                </li>
+                <li data-num="2">
+                    <strong>美伊停火协议进展</strong>
+                    <span>停火协议已到期，霍尔木兹海峡局势对原油供应的影响，中东局势仍是全球资产定价的第一扰动变量</span>
+                </li>
+                <li data-num="3">
+                    <strong>特朗普关税政策</strong>
+                    <span>是否考虑汽车关税临时豁免，对半导体征收关税的威胁，与其他国家的贸易谈判进展</span>
+                </li>
+                <li data-num="4">
+                    <strong>中概股反弹持续性</strong>
+                    <span>美股大跌下中概股能否延续强势，港股估值处于全球低位具备吸引力</span>
+                </li>
+                <li data-num="5">
+                    <strong>港股IPO热度</strong>
+                    <span>胜宏科技首日涨超50%的示范效应，高盛预计2026年港股募资额有望突破600亿美元</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="disclaimer">
+            <h3>⚠️ 风险提示</h3>
+            <ul>
+                <li>以上分析仅供参考，不构成投资建议</li>
+                <li>市场有风险，投资需谨慎</li>
+                <li>过往表现不代表未来收益</li>
+                <li>请根据自身风险承受能力做出投资决策</li>
+            </ul>
+            <p style="margin-top: 15px; font-size: 0.85em;">
+                数据来源：财联社、新浪财经、东方财富、新华社、华尔街见闻等
+            </p>
+        </div>
+
+        <footer>
+            <p>由 hanbot 财经助手生成 🦊</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                <a href="https://hanyajun.com" style="color: var(--highlight); text-decoration: none;">hanyajun.com</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
